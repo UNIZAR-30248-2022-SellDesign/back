@@ -29,6 +29,11 @@ let UsersService = class UsersService {
         await newUser.save();
         return newUser;
     }
+    async getUser(userName) {
+        const username = userName.toLowerCase();
+        const user = await this.userModel.findOne({ username });
+        return user;
+    }
 };
 UsersService = __decorate([
     (0, common_1.Injectable)(),
