@@ -9,6 +9,10 @@ export const DesignSchema = new mongoose.Schema(
         designer: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
+        },
+        image: {
+            type: String,
+            required: true
         }
     }
 )
