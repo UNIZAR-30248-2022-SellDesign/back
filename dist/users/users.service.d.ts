@@ -9,4 +9,7 @@ export declare class UsersService {
     getUser(userName: string): Promise<User & Required<{
         _id: string;
     }>>;
+    getUsers(): Promise<(User & Required<{
+        _id: string;
+    }>)[]>;
 }

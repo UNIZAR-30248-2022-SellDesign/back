@@ -13,6 +13,7 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const auth_module_1 = require("./auth/auth.module");
 const users_module_1 = require("./users/users.module");
+const designs_module_1 = require("./designs/designs.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -21,7 +22,8 @@ AppModule = __decorate([
             users_module_1.UsersModule,
             mongoose_1.MongooseModule.forRoot("mongodb+srv://selldesign:unizar-selldesign@selldesign.v3iw4jk.mongodb.net/?retryWrites=true&w=majority"),
             users_module_1.UsersModule,
-            auth_module_1.AuthModule
+            auth_module_1.AuthModule,
+            designs_module_1.DesignsModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

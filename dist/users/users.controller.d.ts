@@ -10,4 +10,5 @@ export declare class UsersController {
     login(req: any): any;
     getHello(req: any): string;
     logout(req: any): any;
+    allUsers(): Promise<any>;
 }

@@ -34,6 +34,10 @@ let UsersService = class UsersService {
         const user = await this.userModel.findOne({ username });
         return user;
     }
+    async getUsers() {
+        const user = await this.userModel.find();
+        return user;
+    }
 };
 UsersService = __decorate([
     (0, common_1.Injectable)(),

@@ -4,6 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { DesignsModule } from './designs/designs.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -12,7 +14,9 @@ import { UsersModule } from './users/users.module';
         "mongodb+srv://selldesign:unizar-selldesign@selldesign.v3iw4jk.mongodb.net/?retryWrites=true&w=majority"
       ),
       UsersModule,
-      AuthModule
+      AuthModule,
+      DesignsModule,
+      ProductsModule
   ],
   controllers: [AppController],
   providers: [AppService],
