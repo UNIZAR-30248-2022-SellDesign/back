@@ -18,17 +18,20 @@ import {
     async addUser(
       @Body('password') userPassword: string,
       @Body('username') userName: string,
+      @Body('email') email: string,
     ) {
       const saltOrRounds = 10;
       const hashedPassword = await bcrypt.hash(userPassword, saltOrRounds);
       const result = await this.usersService.insertUser(
         userName,
         hashedPassword,
+        email,
       );
       return {
         msg: 'User successfully registered',
         userId: result.id,
-        userName: result.username
+        userName: result.username,
+        email: result.email,
       };
     }
     //Post / Login

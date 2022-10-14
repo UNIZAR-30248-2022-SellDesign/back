@@ -12,5 +12,9 @@ exports.UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    mail: {
+        type: String,
+        required: true,
+    }
 }, { timestamps: true });
 //# sourceMappingURL=users.model.js.map

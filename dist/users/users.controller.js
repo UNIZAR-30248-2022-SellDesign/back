@@ -22,14 +22,15 @@ let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
     }
-    async addUser(userPassword, userName) {
+    async addUser(userPassword, userName, mail) {
         const saltOrRounds = 10;
         const hashedPassword = await bcrypt.hash(userPassword, saltOrRounds);
-        const result = await this.usersService.insertUser(userName, hashedPassword);
+        const result = await this.usersService.insertUser(userName, hashedPassword, mail);
         return {
             msg: 'User successfully registered',
             userId: result.id,
-            userName: result.username
+            userName: result.username,
+            mail: result.mail,
         };
     }
     login(req) {
@@ -43,16 +44,14 @@ let UsersController = class UsersController {
         req.session.destroy();
         return { msg: 'The user session has ended' };
     }
-    async allUsers() {
-        return await this.usersService.getUsers();
-    }
 };
 __decorate([
     (0, common_1.Post)('/signup'),
     __param(0, (0, common_1.Body)('password')),
     __param(1, (0, common_1.Body)('username')),
+    __param(2, (0, common_1.Body)('mail')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:paramtypes", [String, String, String]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "addUser", null);
 __decorate([
@@ -78,12 +77,6 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Object)
 ], UsersController.prototype, "logout", null);
-__decorate([
-    (0, common_1.Get)('/allUsers'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "allUsers", null);
 UsersController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])
