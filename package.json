@@ -30,7 +30,7 @@
     "bcrypt": "^5.1.0",
     "cookie-session": "^2.0.0",
     "express-session": "^1.17.3",
-    "passport": "^0.6.0",
+    "passport": "^0.5.3",
     "passport-local": "^1.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
