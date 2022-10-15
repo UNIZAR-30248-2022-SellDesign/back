@@ -20,12 +20,12 @@ let UsersService = class UsersService {
     constructor(userModel) {
         this.userModel = userModel;
     }
-    async insertUser(userName, password, mail) {
+    async insertUser(userName, password, email) {
         const username = userName.toLowerCase();
         const newUser = new this.userModel({
             username,
             password,
-            mail,
+            email,
         });
         await newUser.save();
         return newUser;

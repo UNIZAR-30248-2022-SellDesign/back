@@ -22,15 +22,15 @@ let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
     }
-    async addUser(userPassword, userName, mail) {
+    async addUser(userPassword, userName, email) {
         const saltOrRounds = 10;
         const hashedPassword = await bcrypt.hash(userPassword, saltOrRounds);
-        const result = await this.usersService.insertUser(userName, hashedPassword, mail);
+        const result = await this.usersService.insertUser(userName, hashedPassword, email);
         return {
             msg: 'User successfully registered',
             userId: result.id,
             userName: result.username,
-            mail: result.mail,
+            email: result.email,
         };
     }
     login(req) {
@@ -49,7 +49,7 @@ __decorate([
     (0, common_1.Post)('/signup'),
     __param(0, (0, common_1.Body)('password')),
     __param(1, (0, common_1.Body)('username')),
-    __param(2, (0, common_1.Body)('mail')),
+    __param(2, (0, common_1.Body)('email')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String, String]),
     __metadata("design:returntype", Promise)
