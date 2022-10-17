@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const bcrypt = require("bcrypt");
 const authenticated_guard_1 = require("../auth/authenticated.guard");
 const local_auth_guard_1 = require("../auth/local.auth.guard");
@@ -34,8 +35,10 @@ let UsersController = class UsersController {
         };
     }
     login(req) {
-        return { User: req.user,
-            msg: 'User logged in' };
+        return {
+            User: req.user,
+            msg: 'User logged in'
+        };
     }
     getHello(req) {
         return req.user;
@@ -47,6 +50,17 @@ let UsersController = class UsersController {
 };
 __decorate([
     (0, common_1.Post)('/signup'),
+    (0, swagger_1.ApiParam)({
+        name: "username"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "password"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "email"
+    }),
+    (0, swagger_1.ApiCreatedResponse)({ description: "User registered correctly" }),
+    (0, swagger_1.ApiResponse)({ status: 500, description: "User already exists" }),
     __param(0, (0, common_1.Body)('password')),
     __param(1, (0, common_1.Body)('username')),
     __param(2, (0, common_1.Body)('email')),
@@ -57,6 +71,8 @@ __decorate([
 __decorate([
     (0, common_1.UseGuards)(local_auth_guard_1.LocalAuthGuard),
     (0, common_1.Post)('/login'),
+    (0, swagger_1.ApiCreatedResponse)({ description: "User loged in" }),
+    (0, swagger_1.ApiResponse)({ status: 401, description: "Incorrect password" }),
     __param(0, (0, common_1.Request)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
