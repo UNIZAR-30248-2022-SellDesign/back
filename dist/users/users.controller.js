@@ -71,6 +71,12 @@ __decorate([
 __decorate([
     (0, common_1.UseGuards)(local_auth_guard_1.LocalAuthGuard),
     (0, common_1.Post)('/login'),
+    (0, swagger_1.ApiParam)({
+        name: "username"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "password"
+    }),
     (0, swagger_1.ApiCreatedResponse)({ description: "User loged in" }),
     (0, swagger_1.ApiResponse)({ status: 401, description: "Incorrect password" }),
     __param(0, (0, common_1.Request)()),

@@ -5,7 +5,7 @@ import { Product } from './products.model';
 
 @Injectable()
 export class ProductsService {
-    constructor(@InjectModel('user') private readonly productModel: Model<Product>) {}
+    constructor(@InjectModel('product') private readonly productModel: Model<Product>) {}
 
     // Param: id del diseño
     async sameNameDesign(id) {

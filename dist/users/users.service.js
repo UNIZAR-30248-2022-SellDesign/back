@@ -35,6 +35,11 @@ let UsersService = class UsersService {
         const user = await this.userModel.findOne({ username });
         return user;
     }
+    async getUsers(userName) {
+        const username = userName.toLowerCase();
+        const users = await this.userModel.find({ userName: userName });
+        return users;
+    }
 };
 UsersService = __decorate([
     (0, common_1.Injectable)(),
