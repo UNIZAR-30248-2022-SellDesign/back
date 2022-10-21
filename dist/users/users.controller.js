@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const bcrypt = require("bcrypt");
 const authenticated_guard_1 = require("../auth/authenticated.guard");
 const local_auth_guard_1 = require("../auth/local.auth.guard");
@@ -22,19 +23,22 @@ let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
     }
-    async addUser(userPassword, userName) {
+    async addUser(userPassword, userName, email) {
         const saltOrRounds = 10;
         const hashedPassword = await bcrypt.hash(userPassword, saltOrRounds);
-        const result = await this.usersService.insertUser(userName, hashedPassword);
+        const result = await this.usersService.insertUser(userName, hashedPassword, email);
         return {
             msg: 'User successfully registered',
             userId: result.id,
-            userName: result.username
+            userName: result.username,
+            email: result.email,
         };
     }
     login(req) {
-        return { User: req.user,
-            msg: 'User logged in' };
+        return {
+            User: req.user,
+            msg: 'User logged in'
+        };
     }
     getHello(req) {
         return req.user;
@@ -43,21 +47,32 @@ let UsersController = class UsersController {
         req.session.destroy();
         return { msg: 'The user session has ended' };
     }
-    async allUsers() {
-        return await this.usersService.getUsers();
-    }
 };
 __decorate([
     (0, common_1.Post)('/signup'),
+    (0, swagger_1.ApiParam)({
+        name: "username"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "password"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "email"
+    }),
+    (0, swagger_1.ApiCreatedResponse)({ description: "User registered correctly" }),
+    (0, swagger_1.ApiResponse)({ status: 500, description: "User already exists" }),
     __param(0, (0, common_1.Body)('password')),
     __param(1, (0, common_1.Body)('username')),
+    __param(2, (0, common_1.Body)('email')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:paramtypes", [String, String, String]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "addUser", null);
 __decorate([
     (0, common_1.UseGuards)(local_auth_guard_1.LocalAuthGuard),
     (0, common_1.Post)('/login'),
+    (0, swagger_1.ApiCreatedResponse)({ description: "User loged in" }),
+    (0, swagger_1.ApiResponse)({ status: 401, description: "Incorrect password" }),
     __param(0, (0, common_1.Request)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -78,12 +93,6 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Object)
 ], UsersController.prototype, "logout", null);
-__decorate([
-    (0, common_1.Get)('/allUsers'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "allUsers", null);
 UsersController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

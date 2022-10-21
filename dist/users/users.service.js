@@ -20,11 +20,12 @@ let UsersService = class UsersService {
     constructor(userModel) {
         this.userModel = userModel;
     }
-    async insertUser(userName, password) {
+    async insertUser(userName, password, email) {
         const username = userName.toLowerCase();
         const newUser = new this.userModel({
             username,
             password,
+            email,
         });
         await newUser.save();
         return newUser;
@@ -32,10 +33,6 @@ let UsersService = class UsersService {
     async getUser(userName) {
         const username = userName.toLowerCase();
         const user = await this.userModel.findOne({ username });
-        return user;
-    }
-    async getUsers() {
-        const user = await this.userModel.find();
         return user;
     }
 };
