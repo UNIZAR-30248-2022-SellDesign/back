@@ -9,7 +9,11 @@ export declare class ProductsService {
     getProduct(id: String): Promise<Product & Required<{
         _id: string;
     }>>;
-    getProducts(id: String): Promise<Product & Required<{
+    getProducts(page: number): Promise<Omit<Product & Required<{
         _id: string;
-    }>>;
+    }>, never>[]>;
+    buscarProducts(busqueda: any, page: any): Promise<Omit<Product & Required<{
+        _id: string;
+    }>, never>[]>;
+    addProduct(precio: any, design: any, image: any, tipo: any, description: any): Promise<any>;
 }

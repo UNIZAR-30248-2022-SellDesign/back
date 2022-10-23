@@ -28,9 +28,26 @@ let ProductsService = class ProductsService {
         let products = await this.productModel.findOne({ _id: id });
         return products;
     }
-    async getProducts(id) {
-        let products = await this.productModel.findOne({ _id: id });
+    async getProducts(page) {
+        let limit = 1;
+        let products = await this.productModel.find().skip(page * limit).limit(limit).populate('design');
         return products;
+    }
+    async buscarProducts(busqueda, page) {
+        let limit = 1;
+        let products = await this.productModel.find({ "tipo": { $regex: busqueda, $options: 'i' } }).skip(page * limit).limit(limit).populate('design');
+        return products;
+    }
+    async addProduct(precio, design, image, tipo, description) {
+        const newProduct = new this.productModel({
+            precio,
+            design,
+            image,
+            tipo,
+            description
+        });
+        await newProduct.save();
+        return newProduct;
     }
 };
 ProductsService = __decorate([

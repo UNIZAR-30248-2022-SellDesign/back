@@ -9,7 +9,7 @@ exports.ProductSchema = new mongoose.Schema({
     },
     design: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Design'
+        ref: 'design'
     },
     image: {
         type: String,
