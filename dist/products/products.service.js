@@ -20,22 +20,36 @@ let ProductsService = class ProductsService {
     constructor(productModel) {
         this.productModel = productModel;
     }
-    async sameNameDesign(id) {
-        let products = await this.productModel.find({ design: id });
-        return products;
-    }
-    async getProduct(id) {
-        let products = await this.productModel.findOne({ _id: id });
-        return products;
-    }
-    async getProducts(page) {
+    async getHomeProducts(page) {
         let limit = 1;
         let products = await this.productModel.find().skip(page * limit).limit(limit).populate('design');
         return products;
     }
-    async buscarProducts(busqueda, page) {
+    async getHomeProductsByPrice(min, max) {
+        let products = await this.productModel.find({ "precio": { $gte: min, $lte: max } }).populate('design');
+        return products;
+    }
+    async getHomeProductsByType(typeID) {
+        let type = null;
+        if (typeID == 1)
+            type = 'Camiseta';
+        else if (typeID == 2)
+            type = 'Pantalon';
+        else if (typeID == 3)
+            type = 'Sudadera';
+        else
+            return null;
+        let products = await this.productModel.find({ "tipo": type }).populate('design');
+        return products;
+    }
+    async searchProducts(name, page) {
         let limit = 1;
-        let products = await this.productModel.find({ "tipo": { $regex: busqueda, $options: 'i' } }).skip(page * limit).limit(limit).populate('design');
+        let products = await this.productModel.find({ "tipo": { $regex: name, $options: 'i' } }).skip(page * limit).limit(limit).populate('design');
+        return products;
+    }
+    async searchProductsByPrice(name, min, max) {
+        let products = await this.productModel.find({ "tipo": { $regex: name, $options: 'i' },
+            "precio": { $gte: min, $lte: max } }).populate('design');
         return products;
     }
     async addProduct(precio, design, image, tipo, description) {

@@ -5,16 +5,42 @@ import { ProductsService } from './products.service';
 export class ProductsController {
     constructor(private readonly productsService: ProductsService) {}
 
-    @Get(':page')
-    async getProducts(@Param() params) {
-        return await this.productsService.getProducts(params.page)
+    // Home sin filtrar
+    @Get('/home/page/:page')
+    async homeProducts(@Param() params) {
+        return await this.productsService.getHomeProducts(params.page)
     }
 
-    @Get('/:busqueda/:page')
+    // Home filtrado por precio
+    @Get('/home/:min/:max')
+    async homeProductsByPrice(@Param() params) {
+        return await this.productsService.getHomeProductsByPrice(params.min, params.max)
+    }
+
+    // Home filtrado por tipo de producto
+    @Get('/home/:type')
+    async homeProductsByType(@Param() params) {
+        return await this.productsService.getHomeProductsByType(params.type)
+    }
+
+    // Busqueda de productos sin filtros
+    @Get('/search/:name/:page')
     async buscarProducts(@Param() params) {
-        return await this.productsService.buscarProducts(params.busqueda, params.page)
+        return await this.productsService.searchProducts(params.name, params.page)
     }
 
+    // Busqueda de productos filtrada por precio
+    @Get('/search/:name/:min/:max')
+    async buscarProductsPorPrecio(@Param() params) {
+        return await this.productsService.searchProductsByPrice(params.name, params.min, params.max)
+    }
+
+
+
+
+
+
+    // Añadir un producto nuevo
     @Post()
     async addProduct(@Body() body): Promise<any> {
         return await this.productsService.addProduct(body.precio,body.design,body.image,body.tipo,body.description)

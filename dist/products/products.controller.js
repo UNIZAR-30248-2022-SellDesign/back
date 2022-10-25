@@ -19,30 +19,60 @@ let ProductsController = class ProductsController {
     constructor(productsService) {
         this.productsService = productsService;
     }
-    async getProducts(params) {
-        return await this.productsService.getProducts(params.page);
+    async homeProducts(params) {
+        return await this.productsService.getHomeProducts(params.page);
+    }
+    async homeProductsByPrice(params) {
+        return await this.productsService.getHomeProductsByPrice(params.min, params.max);
+    }
+    async homeProductsByType(params) {
+        return await this.productsService.getHomeProductsByType(params.type);
     }
     async buscarProducts(params) {
-        return await this.productsService.buscarProducts(params.busqueda, params.page);
+        return await this.productsService.searchProducts(params.name, params.page);
+    }
+    async buscarProductsPorPrecio(params) {
+        return await this.productsService.searchProductsByPrice(params.name, params.min, params.max);
     }
     async addProduct(body) {
         return await this.productsService.addProduct(body.precio, body.design, body.image, body.tipo, body.description);
     }
 };
 __decorate([
-    (0, common_1.Get)(':page'),
+    (0, common_1.Get)('/home/page/:page'),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], ProductsController.prototype, "getProducts", null);
+], ProductsController.prototype, "homeProducts", null);
 __decorate([
-    (0, common_1.Get)('/:busqueda/:page'),
+    (0, common_1.Get)('/home/:min/:max'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ProductsController.prototype, "homeProductsByPrice", null);
+__decorate([
+    (0, common_1.Get)('/home/:type'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ProductsController.prototype, "homeProductsByType", null);
+__decorate([
+    (0, common_1.Get)('/search/:name/:page'),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "buscarProducts", null);
+__decorate([
+    (0, common_1.Get)('/search/:name/:min/:max'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ProductsController.prototype, "buscarProductsPorPrecio", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
