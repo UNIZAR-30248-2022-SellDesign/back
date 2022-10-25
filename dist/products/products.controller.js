@@ -28,11 +28,17 @@ let ProductsController = class ProductsController {
     async homeProductsByType(params) {
         return await this.productsService.getHomeProductsByType(params.type);
     }
+    async homeProductsByPrice_Type(params) {
+        return await this.productsService.getHomeProductsByPrice_Type(params.min, params.max, params.type);
+    }
     async buscarProducts(params) {
         return await this.productsService.searchProducts(params.name, params.page);
     }
     async buscarProductsPorPrecio(params) {
         return await this.productsService.searchProductsByPrice(params.name, params.min, params.max);
+    }
+    async getProductByID(params) {
+        return await this.productsService.getProductByID(params.id);
     }
     async addProduct(body) {
         return await this.productsService.addProduct(body.precio, body.design, body.image, body.tipo, body.description);
@@ -60,6 +66,13 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "homeProductsByType", null);
 __decorate([
+    (0, common_1.Get)('/home/:min/:max/:type'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ProductsController.prototype, "homeProductsByPrice_Type", null);
+__decorate([
     (0, common_1.Get)('/search/:name/:page'),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
@@ -73,6 +86,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "buscarProductsPorPrecio", null);
+__decorate([
+    (0, common_1.Get)('/get/:id'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ProductsController.prototype, "getProductByID", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),

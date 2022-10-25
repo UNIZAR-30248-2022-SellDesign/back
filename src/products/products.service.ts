@@ -8,6 +8,11 @@ export class ProductsService {
 
     constructor(@InjectModel('product') private readonly productModel: Model<Product>) {}
 
+    async getProductByID(id) {
+        let product = await this.productModel.findOne({"_id": id}).populate('design')
+        return product
+    }
+
     async getHomeProducts(page: number) {
         let limit = 1
         let products = await this.productModel.find().skip(page*limit).limit(limit).populate('design')
@@ -31,6 +36,23 @@ export class ProductsService {
             return null
 
         let products = await this.productModel.find({"tipo": type}).populate('design')
+        return products
+    }
+
+    async getHomeProductsByPrice_Type(min,max,typeID) {
+        let type = null
+        if(typeID == 1)
+            type = 'Camiseta'
+        else if(typeID == 2)
+            type = 'Pantalon'
+        else if(typeID == 3)
+            type = 'Sudadera'
+        else
+            return null
+
+        let products = await this.productModel.find({"tipo": type,
+                                                     "precio": {$gte: min, $lte: max}})
+                                              .populate('design')
         return products
     }
 

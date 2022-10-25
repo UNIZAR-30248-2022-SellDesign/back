@@ -20,6 +20,10 @@ let ProductsService = class ProductsService {
     constructor(productModel) {
         this.productModel = productModel;
     }
+    async getProductByID(id) {
+        let product = await this.productModel.findOne({ "_id": id }).populate('design');
+        return product;
+    }
     async getHomeProducts(page) {
         let limit = 1;
         let products = await this.productModel.find().skip(page * limit).limit(limit).populate('design');
@@ -40,6 +44,21 @@ let ProductsService = class ProductsService {
         else
             return null;
         let products = await this.productModel.find({ "tipo": type }).populate('design');
+        return products;
+    }
+    async getHomeProductsByPrice_Type(min, max, typeID) {
+        let type = null;
+        if (typeID == 1)
+            type = 'Camiseta';
+        else if (typeID == 2)
+            type = 'Pantalon';
+        else if (typeID == 3)
+            type = 'Sudadera';
+        else
+            return null;
+        let products = await this.productModel.find({ "tipo": type,
+            "precio": { $gte: min, $lte: max } })
+            .populate('design');
         return products;
     }
     async searchProducts(name, page) {

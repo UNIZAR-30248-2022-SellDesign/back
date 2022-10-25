@@ -23,6 +23,12 @@ export class ProductsController {
         return await this.productsService.getHomeProductsByType(params.type)
     }
 
+    // Home filtrado por precio y tipo
+    @Get('/home/:min/:max/:type')
+    async homeProductsByPrice_Type(@Param() params) {
+        return await this.productsService.getHomeProductsByPrice_Type(params.min, params.max, params.type)
+    }
+
     // Busqueda de productos sin filtros
     @Get('/search/:name/:page')
     async buscarProducts(@Param() params) {
@@ -33,6 +39,12 @@ export class ProductsController {
     @Get('/search/:name/:min/:max')
     async buscarProductsPorPrecio(@Param() params) {
         return await this.productsService.searchProductsByPrice(params.name, params.min, params.max)
+    }
+
+    // Busqueda producto por ID
+    @Get('/get/:id')
+    async getProductByID(@Param() params) {
+        return await this.productsService.getProductByID(params.id)
     }
 
 
