@@ -41,7 +41,7 @@ let ProductsController = class ProductsController {
         return await this.productsService.getProductByID(params.id);
     }
     async addProduct(body) {
-        return await this.productsService.addProduct(body.precio, body.design, body.image, body.tipo, body.description);
+        return await this.productsService.addProduct(body.precio, body.design, body.image, body.tipo, body.description, body.seller);
     }
 };
 __decorate([

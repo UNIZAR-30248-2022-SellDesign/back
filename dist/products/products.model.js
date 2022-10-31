@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductSchema = void 0;
 const mongoose = require("mongoose");
 exports.ProductSchema = new mongoose.Schema({
-    precio: {
+    price: {
         type: Number,
         required: true
     },
@@ -15,13 +15,17 @@ exports.ProductSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    tipo: {
+    type: {
         type: String,
         enum: ['Sudadera', 'Camiseta', 'Pantalon']
     },
     description: {
         type: String,
         required: false
+    },
+    seller: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 });
 //# sourceMappingURL=products.model.js.map

@@ -1,7 +1,7 @@
 import * as mongoose from "mongoose"
 export const ProductSchema = new mongoose.Schema(
     {
-        precio: {
+        price: {
             type: Number,
             required: true
         },
@@ -13,13 +13,17 @@ export const ProductSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        tipo: {
+        type: {
             type: String,
             enum: ['Sudadera', 'Camiseta', 'Pantalon']
         },
         description: {
             type: String,
             required: false
+        },
+        seller: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
         }
     }
 
@@ -27,9 +31,9 @@ export const ProductSchema = new mongoose.Schema(
 
 export interface Product extends mongoose.Document {
     _id: string;
-    precio: string;
+    price: string;
     design: mongoose.Schema.Types.ObjectId;
     image: string;
-    tipo: string;
+    type: string;
     description: string;
 }

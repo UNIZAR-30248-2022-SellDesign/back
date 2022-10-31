@@ -6,22 +6,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProductsModule = void 0;
+exports.PerfilModule = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
-const fav_model_1 = require("./fav.model");
-const products_controller_1 = require("./products.controller");
-const products_model_1 = require("./products.model");
-const products_service_1 = require("./products.service");
-let ProductsModule = class ProductsModule {
+const fav_model_1 = require("../products/fav.model");
+const products_model_1 = require("../products/products.model");
+const products_service_1 = require("../products/products.service");
+const perfil_controller_1 = require("./perfil.controller");
+let PerfilModule = class PerfilModule {
 };
-ProductsModule = __decorate([
+PerfilModule = __decorate([
     (0, common_1.Module)({
         imports: [mongoose_1.MongooseModule.forFeature([{ name: "product", schema: products_model_1.ProductSchema }]),
             mongoose_1.MongooseModule.forFeature([{ name: "fav", schema: fav_model_1.FavSchema }])],
-        controllers: [products_controller_1.ProductsController],
+        controllers: [perfil_controller_1.PerfilController],
         providers: [products_service_1.ProductsService]
     })
-], ProductsModule);
-exports.ProductsModule = ProductsModule;
-//# sourceMappingURL=products.module.js.map
+], PerfilModule);
+exports.PerfilModule = PerfilModule;
+//# sourceMappingURL=perfil.module.js.map

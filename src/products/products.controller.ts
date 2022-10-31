@@ -55,7 +55,7 @@ export class ProductsController {
     // Añadir un producto nuevo
     @Post()
     async addProduct(@Body() body): Promise<any> {
-        return await this.productsService.addProduct(body.precio,body.design,body.image,body.tipo,body.description)
+        return await this.productsService.addProduct(body.precio,body.design,body.image,body.tipo,body.description,body.seller)
     }
 
 }
