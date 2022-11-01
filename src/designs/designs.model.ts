@@ -8,7 +8,8 @@ export const DesignSchema = new mongoose.Schema(
         },
         designer: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
+            ref: 'User',
+            required: true
         },
         image: {
             type: String,
@@ -21,4 +22,5 @@ export interface Design extends mongoose.Document {
     _id: string;
     name: string;
     designer: mongoose.Schema.Types.ObjectId;
+    image: string;
 }

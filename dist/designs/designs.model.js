@@ -10,7 +10,8 @@ exports.DesignSchema = new mongoose.Schema({
     },
     designer: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
     image: {
         type: String,

@@ -1,10 +1,10 @@
 import * as mongoose from "mongoose";
 export declare const ProductSchema: mongoose.Schema<any, mongoose.Model<any, any, any, any, any>, {}, {}, {}, {}, "type", {
     price: number;
+    design: mongoose.Types.ObjectId;
     image: string;
-    description?: string;
     type?: "Sudadera" | "Camiseta" | "Pantalon";
-    design?: mongoose.Types.ObjectId;
+    description?: string;
     seller?: mongoose.Types.ObjectId;
 }>;
 export interface Product extends mongoose.Document {
@@ -14,4 +14,5 @@ export interface Product extends mongoose.Document {
     image: string;
     type: string;
     description: string;
+    seller: mongoose.Schema.Types.ObjectId;
 }
