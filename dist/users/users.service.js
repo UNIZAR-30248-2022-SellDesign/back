@@ -45,14 +45,14 @@ let UsersService = class UsersService {
         return users;
     }
     async setRealName(userName, realName) {
-        const username = { userName: userName.toLowerCase() };
-        const update = { realName: realName };
+        const username = { username: userName.toLowerCase() };
+        const update = { realname: realName };
         let user = await this.userModel.findOneAndUpdate(username, update);
         user = await this.userModel.findOne(username);
         return user;
     }
     async setDescription(userName, description) {
-        const username = { userName: userName.toLowerCase() };
+        const username = { username: userName.toLowerCase() };
         const update = { description: description };
         let user = await this.userModel.findOneAndUpdate(username, update);
         user = await this.userModel.findOne(username);

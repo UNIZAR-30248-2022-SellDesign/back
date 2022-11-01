@@ -36,15 +36,15 @@ export class UsersService {
   }
 
   async setRealName(userName: string, realName: string): Promise<User>{
-    const username = { userName: userName.toLowerCase() };
-    const update = { realName: realName };
+    const username = { username: userName.toLowerCase() };
+    const update = { realname: realName };
     let user = await this.userModel.findOneAndUpdate(username, update);
     user = await this.userModel.findOne(username);
     return user;
   }
 
   async setDescription(userName: string, description: string): Promise<User>{
-    const username = { userName: userName.toLowerCase() };
+    const username = { username: userName.toLowerCase() };
     const update = { description: description };
     let user = await this.userModel.findOneAndUpdate(username, update);
     user = await this.userModel.findOne(username);
