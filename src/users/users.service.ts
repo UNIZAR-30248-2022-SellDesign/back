@@ -10,10 +10,14 @@ export class UsersService {
 
   async insertUser(userName: string, password: string, email: string) {
     const username = userName.toLowerCase();
+    const realname = "";
+    const description = "";
     const newUser = new this.userModel({
       username,
       password,
       email,
+      realname,
+      description
     });
     await newUser.save();
     return newUser;
