@@ -50,17 +50,25 @@ let UsersController = class UsersController {
         return { msg: 'The user session has ended' };
     }
     async user(params) {
-        const user = await this.usersService.getUser(params.userName);
+        const user = await this.usersService.getUser(params.username);
         if (user == undefined) {
             throw new common_1.BadRequestException('Invalid user');
         }
         return user;
     }
-    async setRealName(params) {
-        const user = await this.usersService.setRealName(params.userName, params.realName);
+    async setRealName(username, realname) {
+        const user = await this.usersService.setRealName(username, realname);
+        if (user == undefined) {
+            throw new common_1.BadRequestException('Invalid user');
+        }
+        return user;
     }
-    async setDescription(params) {
-        const user = await this.usersService.setDescription(params.userName, params.description);
+    async setDescription(username, description) {
+        const user = await this.usersService.setDescription(username, description);
+        if (user == undefined) {
+            throw new common_1.BadRequestException('Invalid user');
+        }
+        return user;
     }
 };
 __decorate([
@@ -115,24 +123,41 @@ __decorate([
     __metadata("design:returntype", Object)
 ], UsersController.prototype, "logout", null);
 __decorate([
-    (0, common_1.Get)('/user/:userName'),
+    (0, common_1.Get)('/user/:username'),
+    (0, swagger_1.ApiParam)({
+        name: "username"
+    }),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "user", null);
 __decorate([
-    (0, common_1.Post)('/setRealName/:userName/:realName'),
-    __param(0, (0, common_1.Param)()),
+    (0, common_1.Post)('/setRealName'),
+    (0, swagger_1.ApiParam)({
+        name: "username"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "realname"
+    }),
+    __param(0, (0, common_1.Body)('username')),
+    __param(1, (0, common_1.Body)('realname')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "setRealName", null);
 __decorate([
-    (0, common_1.Post)('/setDescription/:userName/:description'),
-    __param(0, (0, common_1.Param)()),
+    (0, common_1.Post)('/setDescription'),
+    (0, swagger_1.ApiParam)({
+        name: "username"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "description"
+    }),
+    __param(0, (0, common_1.Body)('username')),
+    __param(1, (0, common_1.Body)('description')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "setDescription", null);
 UsersController = __decorate([

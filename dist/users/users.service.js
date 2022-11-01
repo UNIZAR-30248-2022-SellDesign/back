@@ -22,10 +22,14 @@ let UsersService = class UsersService {
     }
     async insertUser(userName, password, email) {
         const username = userName.toLowerCase();
+        const realname = "";
+        const description = "";
         const newUser = new this.userModel({
             username,
             password,
             email,
+            realname,
+            description
         });
         await newUser.save();
         return newUser;

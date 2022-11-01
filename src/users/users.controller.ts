@@ -94,15 +94,18 @@ export class UsersController {
   }
 
   //Post / set real name
-  @Post('/setRealName/:username/:realname')
+  @Post('/setRealName')
   @ApiParam({
     name:"username"
   })
   @ApiParam({
     name:"realname"
   })
-  async setRealName(@Param() params) {
-    const user = await this.usersService.setRealName(params.username,params.realname);
+  async setRealName(
+    @Body('username') username: string,
+    @Body('realname') realname: string,
+  ) {
+    const user = await this.usersService.setRealName(username,realname);
     if (user == undefined) {
       throw new BadRequestException('Invalid user');
     }
@@ -110,15 +113,19 @@ export class UsersController {
   }
 
   //Post / set description
-  @Post('/setDescription/:username/:description')
+  @Post('/setDescription')
   @ApiParam({
     name:"username"
   })
   @ApiParam({
     name:"description"
   })
-  async setDescription(@Param() params) {
-    const user = await this.usersService.setDescription(params.username,params.description);
+  async setDescription(
+    @Body('username') username: string,
+    @Body('description') description: string,
+  )
+   {   
+    const user = await this.usersService.setDescription(username,description);
     if (user == undefined) {
       throw new BadRequestException('Invalid user');
     }
