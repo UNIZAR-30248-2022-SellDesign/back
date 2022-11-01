@@ -15,6 +15,14 @@ exports.UserSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
+    },
+    realname: {
+        type: String,
+        required: false,
+    },
+    description: {
+        type: String,
+        required: false,
     }
 }, { timestamps: true });
 //# sourceMappingURL=users.model.js.map

@@ -3,10 +3,14 @@ export declare const UserSchema: mongoose.Schema<any, mongoose.Model<any, any, a
     username: string;
     password: string;
     email: string;
+    realname?: string;
+    description?: string;
 }>;
 export interface User extends mongoose.Document {
     _id: string;
     username: string;
     password: string;
     email: string;
+    realname: string;
+    description: string;
 }

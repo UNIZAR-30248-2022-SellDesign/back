@@ -7,8 +7,13 @@ export declare class UsersController {
         userId: any;
         userName: string;
         email: string;
+        realname: string;
+        description: string;
     }>;
     login(req: any): any;
     getHello(req: any): string;
     logout(req: any): any;
+    user(params: any): Promise<import("./users.model").User>;
+    setRealName(params: any): Promise<void>;
+    setDescription(params: any): Promise<void>;
 }

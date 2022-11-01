@@ -5,6 +5,8 @@ import {
   Post,
   UseGuards,
   Request,
+  Param,
+  BadRequestException,
 } from '@nestjs/common';
 import { ApiCreatedResponse, ApiParam, ApiResponse } from '@nestjs/swagger';
 import * as bcrypt from 'bcrypt';
@@ -37,13 +39,15 @@ export class UsersController {
     const result = await this.usersService.insertUser(
       userName,
       hashedPassword,
-      email,
+      email
     );
     return {
       msg: 'User successfully registered',
       userId: result.id,
       userName: result.username,
       email: result.email,
+      realname: result.realname,
+      description: result.description
     };
   }
   //Post / Login
@@ -74,5 +78,27 @@ export class UsersController {
   logout(@Request() req): any {
     req.session.destroy();
     return { msg: 'The user session has ended' }
+  }
+
+  //Get / user
+  @Get('/user/:userName')
+  async user(@Param() params) {
+    const user = await this.usersService.getUser(params.userName);
+    if (user == undefined) {
+      throw new BadRequestException('Invalid user');
+    }
+    return user;
+  }
+
+  //Post / set real name
+  @Post('/setRealName/:userName/:realName')
+  async setRealName(@Param() params) {
+    const user = await this.usersService.setRealName(params.userName,params.realName);
+  }
+
+  //Post / set description
+  @Post('/setDescription/:userName/:description')
+  async setDescription(@Param() params) {
+    const user = await this.usersService.setDescription(params.userName,params.description);
   }
 }

@@ -32,6 +32,8 @@ let UsersController = class UsersController {
             userId: result.id,
             userName: result.username,
             email: result.email,
+            realname: result.realname,
+            description: result.description
         };
     }
     login(req) {
@@ -46,6 +48,19 @@ let UsersController = class UsersController {
     logout(req) {
         req.session.destroy();
         return { msg: 'The user session has ended' };
+    }
+    async user(params) {
+        const user = await this.usersService.getUser(params.userName);
+        if (user == undefined) {
+            throw new common_1.BadRequestException('Invalid user');
+        }
+        return user;
+    }
+    async setRealName(params) {
+        const user = await this.usersService.setRealName(params.userName, params.realName);
+    }
+    async setDescription(params) {
+        const user = await this.usersService.setDescription(params.userName, params.description);
     }
 };
 __decorate([
@@ -99,6 +114,27 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Object)
 ], UsersController.prototype, "logout", null);
+__decorate([
+    (0, common_1.Get)('/user/:userName'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "user", null);
+__decorate([
+    (0, common_1.Post)('/setRealName/:userName/:realName'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "setRealName", null);
+__decorate([
+    (0, common_1.Post)('/setDescription/:userName/:description'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "setDescription", null);
 UsersController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

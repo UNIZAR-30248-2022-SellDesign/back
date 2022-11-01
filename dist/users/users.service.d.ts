@@ -8,4 +8,6 @@ export declare class UsersService {
     }>>;
     getUser(userName: string): Promise<User>;
     getUsers(userName: string): Promise<User[]>;
+    setRealName(userName: string, realName: string): Promise<User>;
+    setDescription(userName: string, description: string): Promise<User>;
 }
