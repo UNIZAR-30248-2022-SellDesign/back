@@ -96,6 +96,16 @@ export class UsersController {
     return user;
   }
 
+   //Get / userId
+   @Get('/id/:id')
+   async userById(@Param() params) {
+     const user = await this.usersService.getUserById(params.id);
+     if (user == undefined) {
+       throw new BadRequestException('Invalid user');
+     }
+     return user;
+   }
+
   //Post / set real name
   @Post('/setRealName')
   @ApiParam({
