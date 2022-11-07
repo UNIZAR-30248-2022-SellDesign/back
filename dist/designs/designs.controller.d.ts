@@ -5,4 +5,6 @@ export declare class DesignsController {
     getDesign(params: any): Promise<any>;
     newDesign(name: string, image: string, id: string): Promise<any>;
     updateDesign(name: string, image: string, id: string): Promise<any>;
+    deleteDesign(params: any): Promise<boolean>;
+    getUserDesigns(params: any): Promise<any>;
 }

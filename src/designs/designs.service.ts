@@ -31,4 +31,15 @@ export class DesignsService {
       return design
     }
 
+    async deleteDesign(id: any, designer: any): Promise<boolean> {
+      let result = await this.designModel.deleteOne({"_id": id, "designer": designer})
+      return result.deletedCount == 1
+    }
+
+    async getUserDesigns(designer: any, page: any): Promise<any> {
+      let limit = 8
+      let designs = await this.designModel.find({"designer": designer}).skip(page*limit).limit(limit)
+      return designs
+    }
+
 }

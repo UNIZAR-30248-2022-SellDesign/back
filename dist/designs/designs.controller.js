@@ -28,6 +28,12 @@ let DesignsController = class DesignsController {
     async updateDesign(name, image, id) {
         return await this.designsService.updateDesign(id, image, name);
     }
+    async deleteDesign(params) {
+        return await this.designsService.deleteDesign(params.id, params.designer);
+    }
+    async getUserDesigns(params) {
+        return await this.designsService.getUserDesigns(params.user, params.page);
+    }
 };
 __decorate([
     (0, common_1.Get)(':name'),
@@ -54,6 +60,20 @@ __decorate([
     __metadata("design:paramtypes", [String, String, String]),
     __metadata("design:returntype", Promise)
 ], DesignsController.prototype, "updateDesign", null);
+__decorate([
+    (0, common_1.Delete)('/delete/:designer/:id'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], DesignsController.prototype, "deleteDesign", null);
+__decorate([
+    (0, common_1.Get)('/:user/:page'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], DesignsController.prototype, "getUserDesigns", null);
 DesignsController = __decorate([
     (0, common_1.Controller)('designs'),
     __metadata("design:paramtypes", [designs_service_1.DesignsService])

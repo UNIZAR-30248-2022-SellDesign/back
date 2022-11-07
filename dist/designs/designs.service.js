@@ -40,6 +40,15 @@ let DesignsService = class DesignsService {
         design = await this.designModel.findOne({ "_id": id });
         return design;
     }
+    async deleteDesign(id, designer) {
+        let result = await this.designModel.deleteOne({ "_id": id, "designer": designer });
+        return result.deletedCount == 1;
+    }
+    async getUserDesigns(designer, page) {
+        let limit = 8;
+        let designs = await this.designModel.find({ "designer": designer }).skip(page * limit).limit(limit);
+        return designs;
+    }
 };
 DesignsService = __decorate([
     (0, common_1.Injectable)(),

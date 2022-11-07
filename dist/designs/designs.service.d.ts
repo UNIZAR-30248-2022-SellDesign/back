@@ -6,4 +6,6 @@ export declare class DesignsService {
     getDesign(req: any): Promise<Design>;
     newDesign(designer: string, image: string, name: string): Promise<any>;
     updateDesign(id: string, image: string, name: string): Promise<any>;
+    deleteDesign(id: any, designer: any): Promise<boolean>;
+    getUserDesigns(designer: any, page: any): Promise<any>;
 }
