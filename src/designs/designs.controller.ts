@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { DesignsService } from './designs.service';
 
 @Controller('designs')
@@ -12,9 +12,13 @@ export class DesignsController {
         return await this.designsService.getDesign(params.name)
     }
 
-    @Get()
-    findAll(): string {
-      return 'This action returns all cats';
+    @Post('/new')
+    async newDesign(
+      @Body('name') name: string,
+      @Body('image') image: string,
+      @Body('id') id: string
+    ): Promise<any> {
+      return await this.designsService.newDesign(id,image,name)
     }
 
 }
