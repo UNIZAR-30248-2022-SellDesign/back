@@ -23,4 +23,12 @@ export class DesignsService {
       return newDesign
     }
 
+    async updateDesign(id: string, image: string, name: string): Promise<any> {
+      const filter = {"_id": id}
+      const update = {"name": name, "image": image}
+      let design = await this.designModel.findOneAndUpdate(filter,update)
+      design = await this.designModel.findOne({"_id": id});
+      return design
+    }
+
 }

@@ -5,4 +5,5 @@ export declare class DesignsService {
     constructor(designModel: Model<Design>);
     getDesign(req: any): Promise<Design>;
     newDesign(designer: string, image: string, name: string): Promise<any>;
+    updateDesign(id: string, image: string, name: string): Promise<any>;
 }

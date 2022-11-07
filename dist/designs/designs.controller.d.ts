@@ -4,4 +4,5 @@ export declare class DesignsController {
     constructor(designsService: DesignsService);
     getDesign(params: any): Promise<any>;
     newDesign(name: string, image: string, id: string): Promise<any>;
+    updateDesign(name: string, image: string, id: string): Promise<any>;
 }
