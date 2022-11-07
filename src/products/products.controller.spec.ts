@@ -1,5 +1,6 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
+import { FavSchema } from './fav.model';
 import { ProductsController } from './products.controller';
 import { ProductSchema } from './products.model';
 import { ProductsService } from './products.service';
@@ -15,6 +16,10 @@ describe('ProductsController', () => {
         {
           provide: getModelToken('product'),
           useValue: ProductSchema
+        },
+        {
+          provide: getModelToken('fav'),
+          useValue: FavSchema
         }
       ],
     }).compile();
