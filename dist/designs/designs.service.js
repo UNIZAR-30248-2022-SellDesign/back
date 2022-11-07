@@ -24,6 +24,15 @@ let DesignsService = class DesignsService {
         const design = await this.designModel.findOne({ name: req });
         return design;
     }
+    async newDesign(designer, image, name) {
+        const newDesign = new this.designModel({
+            name,
+            designer,
+            image
+        });
+        await newDesign.save();
+        return newDesign;
+    }
 };
 DesignsService = __decorate([
     (0, common_1.Injectable)(),

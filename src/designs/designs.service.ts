@@ -13,10 +13,10 @@ export class DesignsService {
         return design
     }
 
-    async newDesign(id: string, image: string, name: string): Promise<any> {
+    async newDesign(designer: string, image: string, name: string): Promise<any> {
       const newDesign = new this.designModel({
         name,
-        id,
+        designer,
         image
       })
       await newDesign.save()
