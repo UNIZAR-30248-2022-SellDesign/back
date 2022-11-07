@@ -1,4 +1,4 @@
-import { ProductsService } from 'src/products/products.service';
+import { ProductsService } from '../products/products.service';
 export declare class PerfilController {
     private readonly productsService;
     constructor(productsService: ProductsService);

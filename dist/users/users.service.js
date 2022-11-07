@@ -39,12 +39,12 @@ let UsersService = class UsersService {
         return user;
     }
     async getUser(userName) {
-        const username = userName.toLowerCase();
+        const username = userName === null || userName === void 0 ? void 0 : userName.toLowerCase();
         const user = await this.userModel.findOne({ username });
         return user;
     }
     async getUsers(userName) {
-        const username = userName.toLowerCase();
+        const username = userName === null || userName === void 0 ? void 0 : userName.toLowerCase();
         const users = await this.userModel.find({ userName: userName });
         return users;
     }
