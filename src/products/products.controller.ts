@@ -47,9 +47,10 @@ export class ProductsController {
         return await this.productsService.getProductByID(params.id)
     }
 
-
-
-
+    @Get('/design/:design')
+    async allProductDesign(@Param() params): Promise<any> { 
+        return await this.productsService.getProductByDesign(params.design)
+    }
 
 
     // Añadir un producto nuevo

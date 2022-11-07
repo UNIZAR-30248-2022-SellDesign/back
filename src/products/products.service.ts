@@ -15,6 +15,11 @@ export class ProductsService {
         return product
     }
 
+    async getProductByDesign(designId) {
+        let products = await this.productModel.find({"design": designId}).populate('design')
+        return products
+    }
+
     async getHomeProducts(page: number) {
         let limit = 1
         let products = await this.productModel.find().skip(page*limit).limit(limit).populate('design')
