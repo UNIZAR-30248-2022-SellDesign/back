@@ -56,6 +56,13 @@ let UsersController = class UsersController {
         }
         return user;
     }
+    async userById(params) {
+        const user = await this.usersService.getUserById(params.id);
+        if (user == undefined) {
+            throw new common_1.BadRequestException('Invalid user');
+        }
+        return user;
+    }
     async setRealName(username, realname) {
         const user = await this.usersService.setRealName(username, realname);
         if (user == undefined) {
@@ -132,6 +139,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "user", null);
+__decorate([
+    (0, common_1.Get)('/id/:id'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "userById", null);
 __decorate([
     (0, common_1.Post)('/setRealName'),
     (0, swagger_1.ApiParam)({

@@ -14,6 +14,9 @@ export declare class UsersController {
     getHello(req: any): string;
     logout(req: any): any;
     user(params: any): Promise<import("./users.model").User>;
+    userById(params: any): Promise<import("./users.model").User & Required<{
+        _id: string;
+    }>>;
     setRealName(username: string, realname: string): Promise<import("./users.model").User>;
     setDescription(username: string, description: string): Promise<import("./users.model").User>;
 }

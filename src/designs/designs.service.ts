@@ -12,4 +12,15 @@ export class DesignsService {
         const design = await this.designModel.findOne({ name: req})
         return design
     }
+
+    async newDesign(designer: string, image: string, name: string): Promise<any> {
+      const newDesign = new this.designModel({
+        name,
+        designer,
+        image
+      })
+      await newDesign.save()
+      return newDesign
+    }
+
 }

@@ -6,6 +6,9 @@ export declare class UsersService {
     insertUser(userName: string, password: string, email: string): Promise<User & Required<{
         _id: string;
     }>>;
+    getUserById(id: any): Promise<User & Required<{
+        _id: string;
+    }>>;
     getUser(userName: string): Promise<User>;
     getUsers(userName: string): Promise<User[]>;
     setRealName(userName: string, realName: string): Promise<User>;

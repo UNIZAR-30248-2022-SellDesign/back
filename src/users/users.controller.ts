@@ -13,9 +13,12 @@ import * as bcrypt from 'bcrypt';
 import { AuthenticatedGuard } from '../auth/authenticated.guard';
 import { LocalAuthGuard } from '../auth/local.auth.guard';
 import { UsersService } from './users.service';
+
 @Controller('users')
 export class UsersController {
+
   constructor(private readonly usersService: UsersService) { }
+  
   //signup
   @Post('/signup')
   @ApiParam({
@@ -92,6 +95,16 @@ export class UsersController {
     }
     return user;
   }
+
+   //Get / userId
+   @Get('/id/:id')
+   async userById(@Param() params) {
+     const user = await this.usersService.getUserById(params.id);
+     if (user == undefined) {
+       throw new BadRequestException('Invalid user');
+     }
+     return user;
+   }
 
   //Post / set real name
   @Post('/setRealName')

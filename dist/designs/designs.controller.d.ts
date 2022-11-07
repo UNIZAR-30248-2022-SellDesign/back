@@ -3,5 +3,5 @@ export declare class DesignsController {
     private readonly designsService;
     constructor(designsService: DesignsService);
     getDesign(params: any): Promise<any>;
-    findAll(): string;
+    newDesign(name: string, image: string, id: string): Promise<any>;
 }

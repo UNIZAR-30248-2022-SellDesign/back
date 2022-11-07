@@ -34,6 +34,10 @@ let UsersService = class UsersService {
         await newUser.save();
         return newUser;
     }
+    async getUserById(id) {
+        let user = await (await this.userModel.findById({ "_id": id }));
+        return user;
+    }
     async getUser(userName) {
         const username = userName === null || userName === void 0 ? void 0 : userName.toLowerCase();
         const user = await this.userModel.findOne({ username });

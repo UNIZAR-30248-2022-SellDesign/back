@@ -22,8 +22,8 @@ let DesignsController = class DesignsController {
     async getDesign(params) {
         return await this.designsService.getDesign(params.name);
     }
-    findAll() {
-        return 'This action returns all cats';
+    async newDesign(name, image, id) {
+        return await this.designsService.newDesign(id, image, name);
     }
 };
 __decorate([
@@ -34,11 +34,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], DesignsController.prototype, "getDesign", null);
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Post)('/new'),
+    __param(0, (0, common_1.Body)('name')),
+    __param(1, (0, common_1.Body)('image')),
+    __param(2, (0, common_1.Body)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", String)
-], DesignsController.prototype, "findAll", null);
+    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:returntype", Promise)
+], DesignsController.prototype, "newDesign", null);
 DesignsController = __decorate([
     (0, common_1.Controller)('designs'),
     __metadata("design:paramtypes", [designs_service_1.DesignsService])

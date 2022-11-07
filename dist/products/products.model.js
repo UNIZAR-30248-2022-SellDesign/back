@@ -9,7 +9,8 @@ exports.ProductSchema = new mongoose.Schema({
     },
     design: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'design'
+        ref: 'design',
+        required: true
     },
     image: {
         type: String,

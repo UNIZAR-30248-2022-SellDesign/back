@@ -7,7 +7,8 @@ export const ProductSchema = new mongoose.Schema(
         },
         design: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'design'
+            ref: 'design',
+            required: true
         },
         image: {
             type: String,
@@ -36,4 +37,5 @@ export interface Product extends mongoose.Document {
     image: string;
     type: string;
     description: string;
+    seller: mongoose.Schema.Types.ObjectId;
 }
