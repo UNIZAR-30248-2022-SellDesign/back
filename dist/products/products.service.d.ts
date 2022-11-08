@@ -8,6 +8,9 @@ export declare class ProductsService {
     getProductByID(id: any): Promise<Product & Required<{
         _id: string;
     }>>;
+    getProductByDesign(designId: any): Promise<Omit<Product & Required<{
+        _id: string;
+    }>, never>[]>;
     getHomeProducts(page: number): Promise<Omit<Product & Required<{
         _id: string;
     }>, never>[]>;

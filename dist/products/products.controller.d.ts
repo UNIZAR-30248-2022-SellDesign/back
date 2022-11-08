@@ -23,5 +23,6 @@ export declare class ProductsController {
     getProductByID(params: any): Promise<import("./products.model").Product & Required<{
         _id: string;
     }>>;
+    allProductDesign(params: any): Promise<any>;
     addProduct(body: any): Promise<any>;
 }

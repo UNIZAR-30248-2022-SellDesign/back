@@ -40,6 +40,9 @@ let ProductsController = class ProductsController {
     async getProductByID(params) {
         return await this.productsService.getProductByID(params.id);
     }
+    async allProductDesign(params) {
+        return await this.productsService.getProductByDesign(params.design);
+    }
     async addProduct(body) {
         return await this.productsService.addProduct(body.precio, body.design, body.image, body.tipo, body.description, body.seller);
     }
@@ -93,6 +96,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "getProductByID", null);
+__decorate([
+    (0, common_1.Get)('/design/:design'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ProductsController.prototype, "allProductDesign", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
