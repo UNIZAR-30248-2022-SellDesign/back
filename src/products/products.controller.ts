@@ -1,9 +1,15 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ProductsService } from './products.service';
 
 @Controller('products')
 export class ProductsController {
     constructor(private readonly productsService: ProductsService) {}
+
+    // Productos que ha subido un usuario
+    @Get('/user/:user/:page')
+    async getUserDesigns(@Param() params): Promise<any> {
+        return await this.productsService.getUserProducts(params.user, params.page)
+    }
 
     // Home sin filtrar
     @Get('/home/page/:page')
@@ -52,11 +58,35 @@ export class ProductsController {
         return await this.productsService.getProductByDesign(params.design)
     }
 
-
     // Añadir un producto nuevo
-    @Post()
-    async addProduct(@Body() body): Promise<any> {
-        return await this.productsService.addProduct(body.precio,body.design,body.image,body.tipo,body.description,body.seller)
+    @Post('/new')
+    async addProduct(
+        @Body('price') price: string,
+        @Body('design') design: string,
+        @Body('image') image: string,
+        @Body('type') type: string,
+        @Body('description') description: string,
+        @Body('seller') seller: string
+    ): Promise<any> {
+        return await this.productsService.newProduct(price,design,image,type,description,seller)
+    }
+
+    // Actualizar un producto existente
+    @Put('/update')
+    async updateProduct(
+        @Body('_id') _id: string,
+        @Body('price') price: string,
+        @Body('design') design: string,
+        @Body('image') image: string,
+        @Body('type') type: string,
+        @Body('description') description: string
+    ): Promise<any> {
+        return await this.productsService.updateProduct(_id,price,design,image,type,description)
+    }
+
+    @Delete('/delete/:seller/:id')
+    async deleteProduct(@Param() params): Promise<boolean>{
+        return await this.productsService.deleteProduct(params.id,params.seller)
     }
 
 }

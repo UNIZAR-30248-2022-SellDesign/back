@@ -23,17 +23,19 @@ export declare class ProductsService {
     getHomeProductsByPrice_Type(min: any, max: any, typeID: any): Promise<Omit<Product & Required<{
         _id: string;
     }>, never>[]>;
-    getUserFavProducts(id: any, page: any): Promise<(Fav & Required<{
+    getUserFavProducts(id: any, page: any): Promise<Omit<Fav & Required<{
         _id: string;
-    }>)[]>;
-    getUserProducts(id: any, page: any): Promise<(Product & Required<{
+    }>, never>[]>;
+    getUserProducts(id: any, page: any): Promise<Omit<Product & Required<{
         _id: string;
-    }>)[]>;
+    }>, never>[]>;
     searchProducts(name: any, page: any): Promise<Omit<Product & Required<{
         _id: string;
     }>, never>[]>;
     searchProductsByPrice(name: any, min: any, max: any): Promise<Omit<Product & Required<{
         _id: string;
     }>, never>[]>;
-    addProduct(price: any, design: any, image: any, type: any, description: any, seller: any): Promise<any>;
+    newProduct(price: any, design: any, image: any, type: any, description: any, seller: any): Promise<any>;
+    updateProduct(_id: string, price: string, design: string, image: string, type: string, description: string): Promise<any>;
+    deleteProduct(_id: any, seller: any): Promise<boolean>;
 }

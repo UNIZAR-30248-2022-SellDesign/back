@@ -21,7 +21,7 @@ export class ProductsService {
     }
 
     async getHomeProducts(page: number) {
-        let limit = 1
+        let limit = 8
         let products = await this.productModel.find().skip(page*limit).limit(limit).populate('design')
         return products
     }
@@ -64,21 +64,19 @@ export class ProductsService {
     }
 
     async getUserFavProducts(id, page) {
-        let fav_products = await this.favModel.find({"user": id})
-        return fav_products
-        
+        let limit = 8
+        let fav_products = await this.favModel.find({"user": id}).skip(page*limit).limit(limit).populate('product')
+        return fav_products   
     }
+
     async getUserProducts(id, page) {
-        // TODO AÑADIR PAGE
-        let products = await this.productModel.find({"seller": id})
+        let limit = 8
+        let products = await this.productModel.find({"seller": id}).skip(page*limit).limit(limit).populate('design')
         return products
-        
     }
-
-
 
     async searchProducts(name,page) {
-        let limit = 1
+        let limit = 8
         let products = await this.productModel.find({"type": {$regex: name, $options: 'i'}}).skip(page*limit).limit(limit).populate('design')
         return products
     }
@@ -89,7 +87,7 @@ export class ProductsService {
         return products
     }
 
-    async addProduct(price,design,image,type,description,seller): Promise<any> {
+    async newProduct(price,design,image,type,description,seller): Promise<any> {
         const newProduct = new this.productModel({
             price,
             design,
@@ -97,13 +95,23 @@ export class ProductsService {
             type,
             description,
             seller
-
         })
         await newProduct.save()
         return newProduct
     }
 
+    async updateProduct(_id: string, price: string, design: string, image: string, type: string, description: string): Promise<any> {
+        const filter = {"_id": _id}
+        const update = {price,design,image,type,description}
+        let product = await this.productModel.findOneAndUpdate(filter,update)
+        product = await this.productModel.findOne({_id})
+        return product
+    }
 
+    async deleteProduct(_id: any, seller: any): Promise<boolean> {
+        let result = await this.productModel.deleteOne({_id,seller})
+        return result.deletedCount == 1
+    }
 
 }
 

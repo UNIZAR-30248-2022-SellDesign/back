@@ -30,7 +30,7 @@ let ProductsService = class ProductsService {
         return products;
     }
     async getHomeProducts(page) {
-        let limit = 1;
+        let limit = 8;
         let products = await this.productModel.find().skip(page * limit).limit(limit).populate('design');
         return products;
     }
@@ -67,15 +67,17 @@ let ProductsService = class ProductsService {
         return products;
     }
     async getUserFavProducts(id, page) {
-        let fav_products = await this.favModel.find({ "user": id });
+        let limit = 8;
+        let fav_products = await this.favModel.find({ "user": id }).skip(page * limit).limit(limit).populate('product');
         return fav_products;
     }
     async getUserProducts(id, page) {
-        let products = await this.productModel.find({ "seller": id });
+        let limit = 8;
+        let products = await this.productModel.find({ "seller": id }).skip(page * limit).limit(limit).populate('design');
         return products;
     }
     async searchProducts(name, page) {
-        let limit = 1;
+        let limit = 8;
         let products = await this.productModel.find({ "type": { $regex: name, $options: 'i' } }).skip(page * limit).limit(limit).populate('design');
         return products;
     }
@@ -84,7 +86,7 @@ let ProductsService = class ProductsService {
             "price": { $gte: min, $lte: max } }).populate('design');
         return products;
     }
-    async addProduct(price, design, image, type, description, seller) {
+    async newProduct(price, design, image, type, description, seller) {
         const newProduct = new this.productModel({
             price,
             design,
@@ -95,6 +97,17 @@ let ProductsService = class ProductsService {
         });
         await newProduct.save();
         return newProduct;
+    }
+    async updateProduct(_id, price, design, image, type, description) {
+        const filter = { "_id": _id };
+        const update = { price, design, image, type, description };
+        let product = await this.productModel.findOneAndUpdate(filter, update);
+        product = await this.productModel.findOne({ _id });
+        return product;
+    }
+    async deleteProduct(_id, seller) {
+        let result = await this.productModel.deleteOne({ _id, seller });
+        return result.deletedCount == 1;
     }
 };
 ProductsService = __decorate([
