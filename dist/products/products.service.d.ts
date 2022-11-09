@@ -35,7 +35,7 @@ export declare class ProductsService {
     searchProductsByPrice(name: any, min: any, max: any): Promise<Omit<Product & Required<{
         _id: string;
     }>, never>[]>;
-    newProduct(price: any, design: any, image: any, type: any, description: any, seller: any): Promise<any>;
-    updateProduct(_id: string, price: string, design: string, image: string, type: string, description: string): Promise<any>;
+    newProduct(price: any, design: any, image: any, typeID: any, description: any, seller: any): Promise<any>;
+    updateProduct(_id: string, price: string, design: string, image: string, typeID: any, description: string): Promise<any>;
     deleteProduct(_id: any, seller: any): Promise<boolean>;
 }
