@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.81% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/22</span>
+                <span class='fraction'>22/22</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/6</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/20</span>
+                <span class='fraction'>20/20</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -116,40 +116,40 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -163,38 +163,38 @@ export class DesignsService {
 &nbsp;
     constructor(@InjectModel('design') private readonly designModel: Model&lt;Design&gt;) {}
 &nbsp;
-<span class="fstat-no" title="function not covered" >    async </span>getDesign(req: any): Promise&lt;Design&gt; {
-        const design = <span class="cstat-no" title="statement not covered" >await this.designModel.findOne({ name: req})</span>
-<span class="cstat-no" title="statement not covered" >        return design</span>
+    async getDesign(req: any): Promise&lt;Design&gt; {
+        const design = await this.designModel.findOne({ name: req})
+        return design
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    async </span>newDesign(designer: string, image: string, name: string): Promise&lt;any&gt; {
-      const newDesign = <span class="cstat-no" title="statement not covered" >new this.designModel({</span>
+    async newDesign(designer: string, image: string, name: string): Promise&lt;any&gt; {
+      const newDesign = new this.designModel({
         name,
         designer,
         image
       })
-<span class="cstat-no" title="statement not covered" >      await newDesign.save()</span>
-<span class="cstat-no" title="statement not covered" >      return newDesign</span>
+      await newDesign.save()
+      return newDesign
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    async </span>updateDesign(id: string, image: string, name: string): Promise&lt;any&gt; {
-      const filter = <span class="cstat-no" title="statement not covered" >{"_id": id}</span>
-      const update = <span class="cstat-no" title="statement not covered" >{"name": name, "image": image}</span>
-      let design = <span class="cstat-no" title="statement not covered" >await this.designModel.findOneAndUpdate(filter,update)</span>
-<span class="cstat-no" title="statement not covered" >      design = await this.designModel.findOne({"_id": id});</span>
-<span class="cstat-no" title="statement not covered" >      return design</span>
+    async updateDesign(id: string, image: string, name: string): Promise&lt;any&gt; {
+      const filter = {"_id": id}
+      const update = {"name": name, "image": image}
+      let design = await this.designModel.findOneAndUpdate(filter,update)
+      design = await this.designModel.findOne({"_id": id});
+      return design
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    async </span>deleteDesign(id: any, designer: any): Promise&lt;boolean&gt; {
-      let result = <span class="cstat-no" title="statement not covered" >await this.designModel.deleteOne({"_id": id, "designer": designer})</span>
-<span class="cstat-no" title="statement not covered" >      return result.deletedCount == 1</span>
+    async deleteDesign(id: any, designer: any): Promise&lt;boolean&gt; {
+      let result = await this.designModel.deleteOne({"_id": id, "designer": designer})
+      return result.deletedCount == 1
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    async </span>getUserDesigns(designer: any, page: any): Promise&lt;any&gt; {
-      let limit = <span class="cstat-no" title="statement not covered" >8</span>
-      let designs = <span class="cstat-no" title="statement not covered" >await this.designModel.find({"designer": designer}).skip(page*limit).limit(limit)</span>
-<span class="cstat-no" title="statement not covered" >      return designs</span>
+    async getUserDesigns(designer: any, page: any): Promise&lt;any&gt; {
+      let limit = 8
+      let designs = await this.designModel.find({"designer": designer}).skip(page*limit).limit(limit)
+      return designs
     }
 &nbsp;
 }
@@ -205,7 +205,7 @@ export class DesignsService {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-08T15:11:29.565Z
+                at 2022-11-09T15:25:18.318Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
