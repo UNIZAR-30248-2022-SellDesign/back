@@ -87,7 +87,16 @@ export class ProductsService {
         return products
     }
 
-    async newProduct(price,design,image,type,description,seller): Promise<any> {
+    async newProduct(price,design,image,typeID,description,seller): Promise<any> {
+        let type = null
+        if(typeID == 1)
+            type = 'Camiseta'
+        else if(typeID == 2)
+            type = 'Pantalon'
+        else if(typeID == 3)
+            type = 'Sudadera'
+        else
+            return null
         const newProduct = new this.productModel({
             price,
             design,
@@ -100,7 +109,16 @@ export class ProductsService {
         return newProduct
     }
 
-    async updateProduct(_id: string, price: string, design: string, image: string, type: string, description: string): Promise<any> {
+    async updateProduct(_id: string, price: string, design: string, image: string, typeID, description: string): Promise<any> {
+        let type = null
+        if(typeID == 1)
+            type = 'Camiseta'
+        else if(typeID == 2)
+            type = 'Pantalon'
+        else if(typeID == 3)
+            type = 'Sudadera'
+        else
+            return null
         const filter = {"_id": _id}
         const update = {price,design,image,type,description}
         let product = await this.productModel.findOneAndUpdate(filter,update)

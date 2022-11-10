@@ -86,7 +86,16 @@ let ProductsService = class ProductsService {
             "price": { $gte: min, $lte: max } }).populate('design');
         return products;
     }
-    async newProduct(price, design, image, type, description, seller) {
+    async newProduct(price, design, image, typeID, description, seller) {
+        let type = null;
+        if (typeID == 1)
+            type = 'Camiseta';
+        else if (typeID == 2)
+            type = 'Pantalon';
+        else if (typeID == 3)
+            type = 'Sudadera';
+        else
+            return null;
         const newProduct = new this.productModel({
             price,
             design,
@@ -98,7 +107,16 @@ let ProductsService = class ProductsService {
         await newProduct.save();
         return newProduct;
     }
-    async updateProduct(_id, price, design, image, type, description) {
+    async updateProduct(_id, price, design, image, typeID, description) {
+        let type = null;
+        if (typeID == 1)
+            type = 'Camiseta';
+        else if (typeID == 2)
+            type = 'Pantalon';
+        else if (typeID == 3)
+            type = 'Sudadera';
+        else
+            return null;
         const filter = { "_id": _id };
         const update = { price, design, image, type, description };
         let product = await this.productModel.findOneAndUpdate(filter, update);
