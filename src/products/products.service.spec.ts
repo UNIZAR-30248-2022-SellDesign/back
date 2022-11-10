@@ -160,7 +160,7 @@ describe('ProductsService', () => {
 
   describe('newProduct', () => {
     it('should create and return a new product ', async () => {
-      let res = await service.newProduct("testprice", "testdesign", "testimage","testtype","testdescription","testseller");
+      let res = await service.newProduct("testprice", "testdesign", "testimage","1","testdescription","testseller");
       expect(res.data.description).toBe(product.description);
     });
   });
@@ -168,7 +168,7 @@ describe('ProductsService', () => {
   describe('updateProduct', () => {
     it('should update data from an existing product ', async () => {
       productModel.findOne = jest.fn().mockResolvedValueOnce(product);
-      let res = await service.updateProduct("12345678","testprice", "testdesign", "testimage","testtype","testdescription");
+      let res = await service.updateProduct("12345678","testprice", "testdesign", "testimage","1","testdescription");
       expect(res.description).toBe(product.description);
     });
   });
