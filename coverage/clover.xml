@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1668007518372" clover="3.2.0">
-  <project timestamp="1668007518372" name="All files">
-    <metrics statements="327" coveredstatements="174" conditionals="29" coveredconditionals="8" methods="69" coveredmethods="39" elements="425" coveredelements="221" complexity="0" loc="327" ncloc="327" packages="7" files="28" classes="28"/>
+<coverage generated="1668083136088" clover="3.2.0">
+  <project timestamp="1668083136088" name="All files">
+    <metrics statements="342" coveredstatements="186" conditionals="29" coveredconditionals="8" methods="74" coveredmethods="41" elements="445" coveredelements="235" complexity="0" loc="342" ncloc="342" packages="7" files="28" classes="28"/>
     <package name="src">
       <metrics statements="35" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="3"/>
       <file name="app.controller.ts" path="/home/ruben/selldesign/back/src/app.controller.ts">
@@ -245,14 +245,14 @@
       </file>
     </package>
     <package name="src.products">
-      <metrics statements="80" coveredstatements="54" conditionals="12" coveredconditionals="2" methods="22" coveredmethods="13"/>
+      <metrics statements="95" coveredstatements="66" conditionals="12" coveredconditionals="2" methods="27" coveredmethods="15"/>
       <file name="fav.model.ts" path="/home/ruben/selldesign/back/src/products/fav.model.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
       </file>
       <file name="products.controller.ts" path="/home/ruben/selldesign/back/src/products/products.controller.ts">
-        <metrics statements="22" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="1"/>
+        <metrics statements="28" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
@@ -271,10 +271,16 @@
         <line num="41" count="0" type="stmt"/>
         <line num="46" count="1" type="stmt"/>
         <line num="47" count="0" type="stmt"/>
-        <line num="51" count="1" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="58" count="1" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="88" count="1" type="stmt"/>
+        <line num="89" count="0" type="stmt"/>
       </file>
       <file name="products.model.ts" path="/home/ruben/selldesign/back/src/products/products.model.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -292,13 +298,13 @@
         <line num="14" count="0" type="stmt"/>
       </file>
       <file name="products.service.ts" path="/home/ruben/selldesign/back/src/products/products.service.ts">
-        <metrics statements="47" coveredstatements="37" conditionals="12" coveredconditionals="2" methods="12" coveredmethods="12"/>
+        <metrics statements="56" coveredstatements="46" conditionals="12" coveredconditionals="2" methods="14" coveredmethods="14"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
         <line num="3" count="3" type="stmt"/>
         <line num="8" count="3" type="stmt"/>
-        <line num="10" count="14" type="stmt"/>
-        <line num="11" count="14" type="stmt"/>
+        <line num="10" count="16" type="stmt"/>
+        <line num="11" count="16" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
@@ -330,16 +336,25 @@
         <line num="63" count="1" type="stmt"/>
         <line num="67" count="1" type="stmt"/>
         <line num="68" count="1" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
         <line num="73" count="1" type="stmt"/>
         <line num="74" count="1" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="79" count="1" type="stmt"/>
+        <line num="80" count="1" type="stmt"/>
         <line num="81" count="1" type="stmt"/>
-        <line num="82" count="1" type="stmt"/>
-        <line num="83" count="1" type="stmt"/>
+        <line num="85" count="1" type="stmt"/>
         <line num="87" count="1" type="stmt"/>
-        <line num="89" count="1" type="stmt"/>
-        <line num="93" count="1" type="stmt"/>
-        <line num="102" count="1" type="stmt"/>
-        <line num="103" count="1" type="stmt"/>
+        <line num="91" count="1" type="stmt"/>
+        <line num="99" count="1" type="stmt"/>
+        <line num="100" count="1" type="stmt"/>
+        <line num="104" count="1" type="stmt"/>
+        <line num="105" count="1" type="stmt"/>
+        <line num="106" count="1" type="stmt"/>
+        <line num="107" count="1" type="stmt"/>
+        <line num="108" count="1" type="stmt"/>
+        <line num="112" count="1" type="stmt"/>
+        <line num="113" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.users">

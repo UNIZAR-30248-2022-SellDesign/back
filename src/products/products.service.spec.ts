@@ -26,6 +26,7 @@ class productModel {
     populate: jest.fn().mockResolvedValue([product])
   }));
   static findOneAndUpdate = jest.fn().mockResolvedValue(product);
+  static deleteOne = jest.fn().mockResolvedValue({"n": 1, "ok": 1, "deletedCount": 1});
 }
 
 class favModel {
@@ -110,13 +111,27 @@ describe('ProductsService', () => {
 
   describe('getUserFavProducts', () => {
     it('should return a list with products faved by the user ', async () => {
+      favModel.find = jest.fn().mockImplementationOnce(() => ({
+        skip: jest.fn().mockImplementationOnce(() => ({
+          limit: jest.fn().mockImplementationOnce(() => ({
+            populate: jest.fn().mockResolvedValue([product])
+          }))
+        })
+      )}));
       expect(await service.getUserFavProducts("1", "1")).toStrictEqual([product]);
     });
   });
 
   describe('getUserProducts', () => {
     it('should return a list with products posted by a user ', async () => {
-      productModel.find.mockImplementationOnce(populate => [product]);
+      productModel.find = jest.fn().mockImplementationOnce(() => ({
+        skip: jest.fn().mockImplementationOnce(() => ({
+          limit: jest.fn().mockImplementationOnce(() => ({
+            populate: jest.fn().mockResolvedValue([product])
+          }))
+        })
+        )
+      }));
       expect(await service.getUserProducts("12345678", "1")).toStrictEqual([product]);
     });
   });
@@ -143,11 +158,27 @@ describe('ProductsService', () => {
     });
   });
 
-  describe('addProduct', () => {
+  describe('newProduct', () => {
     it('should create and return a new product ', async () => {
-      let res = await service.addProduct("testprice", "testdesign", "testimage","testtype","testdescription","testseller");
+      let res = await service.newProduct("testprice", "testdesign", "testimage","testtype","testdescription","testseller");
       expect(res.data.description).toBe(product.description);
     });
   });
+
+  describe('updateProduct', () => {
+    it('should update data from an existing product ', async () => {
+      productModel.findOne = jest.fn().mockResolvedValueOnce(product);
+      let res = await service.updateProduct("12345678","testprice", "testdesign", "testimage","testtype","testdescription");
+      expect(res.description).toBe(product.description);
+    });
+  });
+
+  describe('deleteProduct', () => {
+    it('should delete an existing product ', async () => {
+      let res = await service.deleteProduct("12345678","testseller");
+      expect(res).toBe(true);
+    });
+  });
+
 
 });
