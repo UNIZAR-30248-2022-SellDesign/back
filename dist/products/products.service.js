@@ -31,11 +31,11 @@ let ProductsService = class ProductsService {
     }
     async getHomeProducts(page) {
         let limit = 8;
-        let products = await this.productModel.find().skip(page * limit).limit(limit).populate('design');
+        let products = await this.productModel.find().sort({ "updatedAt": -1 }).skip(page * limit).limit(limit).populate('design');
         return products;
     }
     async getHomeProductsByPrice(min, max) {
-        let products = await this.productModel.find({ "price": { $gte: min, $lte: max } }).populate('design');
+        let products = await this.productModel.find({ "price": { $gte: min, $lte: max } }).sort({ "updatedAt": -1 }).populate('design');
         return products;
     }
     async getHomeProductsByType(typeID) {
@@ -48,7 +48,7 @@ let ProductsService = class ProductsService {
             type = 'Sudadera';
         else
             return null;
-        let products = await this.productModel.find({ "type": type }).populate('design');
+        let products = await this.productModel.find({ "type": type }).sort({ "updatedAt": -1 }).populate('design');
         return products;
     }
     async getHomeProductsByPrice_Type(min, max, typeID) {
@@ -61,29 +61,29 @@ let ProductsService = class ProductsService {
             type = 'Sudadera';
         else
             return null;
-        let products = await this.productModel.find({ "type": type,
-            "price": { $gte: min, $lte: max } })
+        let products = await this.productModel.find({ "type": type, "price": { $gte: min, $lte: max } })
+            .sort({ "updatedAt": -1 })
             .populate('design');
         return products;
     }
     async getUserFavProducts(id, page) {
         let limit = 8;
-        let fav_products = await this.favModel.find({ "user": id }).skip(page * limit).limit(limit).populate('product');
+        let fav_products = await this.favModel.find({ "user": id }).sort({ "updatedAt": -1 }).skip(page * limit).limit(limit).populate('product');
         return fav_products;
     }
     async getUserProducts(id, page) {
         let limit = 8;
-        let products = await this.productModel.find({ "seller": id }).skip(page * limit).limit(limit).populate('design');
+        let products = await this.productModel.find({ "seller": id }).sort({ "updatedAt": -1 }).skip(page * limit).limit(limit).populate('design');
         return products;
     }
     async searchProducts(name, page) {
         let limit = 8;
-        let products = await this.productModel.find({ "type": { $regex: name, $options: 'i' } }).skip(page * limit).limit(limit).populate('design');
+        let products = await this.productModel.find({ "type": { $regex: name, $options: 'i' } }).sort({ "updatedAt": -1 }).skip(page * limit).limit(limit).populate('design');
         return products;
     }
     async searchProductsByPrice(name, min, max) {
         let products = await this.productModel.find({ "type": { $regex: name, $options: 'i' },
-            "price": { $gte: min, $lte: max } }).populate('design');
+            "price": { $gte: min, $lte: max } }).sort({ "updatedAt": -1 }).populate('design');
         return products;
     }
     async newProduct(price, design, image, typeID, description, seller) {

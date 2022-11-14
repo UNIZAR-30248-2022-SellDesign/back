@@ -28,5 +28,5 @@ exports.ProductSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }
-});
+}, { timestamps: true });
 //# sourceMappingURL=products.model.js.map

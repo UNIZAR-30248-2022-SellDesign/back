@@ -38,7 +38,7 @@ export class DesignsService {
 
     async getUserDesigns(designer: any, page: any): Promise<any> {
       let limit = 8
-      let designs = await this.designModel.find({"designer": designer}).skip(page*limit).limit(limit)
+      let designs = await this.designModel.find({"designer": designer}).sort({"updatedAt": -1}).skip(page*limit).limit(limit)
       return designs
     }
 

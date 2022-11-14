@@ -3,7 +3,6 @@ export const DesignSchema = new mongoose.Schema(
     {
         name: {
             type: String,
-            unique: true,
             required: true
         },
         designer: {
@@ -15,7 +14,8 @@ export const DesignSchema = new mongoose.Schema(
             type: String,
             required: true
         }
-    }
+    },
+    { timestamps: true }
 )
 
 export interface Design extends mongoose.Document {

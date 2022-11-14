@@ -10,7 +10,8 @@ export const FavSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         }
-    }
+    },
+    { timestamps: true }
 )
 
 export interface Fav extends mongoose.Document {

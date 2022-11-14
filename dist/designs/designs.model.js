@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 exports.DesignSchema = new mongoose.Schema({
     name: {
         type: String,
-        unique: true,
         required: true
     },
     designer: {
@@ -17,5 +16,5 @@ exports.DesignSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-});
+}, { timestamps: true });
 //# sourceMappingURL=designs.model.js.map

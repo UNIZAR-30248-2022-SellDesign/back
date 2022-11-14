@@ -1,8 +1,8 @@
 import * as mongoose from "mongoose";
 export declare const ProductSchema: mongoose.Schema<any, mongoose.Model<any, any, any, any, any>, {}, {}, {}, {}, "type", {
     image: string;
-    design: mongoose.Types.ObjectId;
     price: number;
+    design: mongoose.Types.ObjectId;
     type?: "Sudadera" | "Camiseta" | "Pantalon";
     description?: string;
     seller?: mongoose.Types.ObjectId;
