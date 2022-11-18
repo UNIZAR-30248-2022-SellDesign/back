@@ -62,6 +62,15 @@ let UsersService = class UsersService {
         user = await this.userModel.findOne(username);
         return user;
     }
+    async setImage(userName, image) {
+        const username = { username: userName === null || userName === void 0 ? void 0 : userName.toLowerCase() };
+        const update = { image: image };
+        console.log(username);
+        console.log(userName);
+        let user = await this.userModel.findOneAndUpdate(username, update);
+        user = await this.userModel.findOne(username);
+        return user;
+    }
 };
 UsersService = __decorate([
     (0, common_1.Injectable)(),

@@ -5,6 +5,7 @@ export declare const UserSchema: mongoose.Schema<any, mongoose.Model<any, any, a
     email: string;
     realname?: string;
     description?: string;
+    image?: string;
 }>;
 export interface User extends mongoose.Document {
     _id: string;

@@ -13,4 +13,5 @@ export declare class UsersService {
     getUsers(userName: string): Promise<User[]>;
     setRealName(userName: string, realName: string): Promise<User>;
     setDescription(userName: string, description: string): Promise<User>;
+    setImage(userName: string, image: string): Promise<User>;
 }

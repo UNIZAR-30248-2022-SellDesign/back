@@ -19,4 +19,5 @@ export declare class UsersController {
     }>>;
     setRealName(username: string, realname: string): Promise<import("./users.model").User>;
     setDescription(username: string, description: string): Promise<import("./users.model").User>;
+    setImage(username: string, image: string): Promise<import("./users.model").User>;
 }

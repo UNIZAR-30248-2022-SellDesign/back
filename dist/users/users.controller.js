@@ -77,6 +77,13 @@ let UsersController = class UsersController {
         }
         return user;
     }
+    async setImage(username, image) {
+        const user = await this.usersService.setImage(username, image);
+        if (user == undefined) {
+            throw new common_1.BadRequestException('Invalid user');
+        }
+        return user;
+    }
 };
 __decorate([
     (0, common_1.Post)('/signup'),
@@ -174,6 +181,20 @@ __decorate([
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "setDescription", null);
+__decorate([
+    (0, common_1.Post)('/setImage'),
+    (0, swagger_1.ApiParam)({
+        name: "username"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "image"
+    }),
+    __param(0, (0, common_1.Body)('username')),
+    __param(1, (0, common_1.Body)('image')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "setImage", null);
 UsersController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

@@ -144,4 +144,25 @@ export class UsersController {
     }
     return user;
   }
+
+  //Post / set image
+  @Post('/setImage')
+  @ApiParam({
+    name:"username"
+  })
+  @ApiParam({
+    name:"image"
+  })
+  async setImage(
+    @Body('username') username: string,
+    @Body('image') image: string,
+  )
+   {   
+    const user = await this.usersService.setImage(username,image);
+    if (user == undefined) {
+      throw new BadRequestException('Invalid user');
+    }
+    return user;
+  }
+
 }

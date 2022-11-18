@@ -21,6 +21,10 @@ export const UserSchema = new mongoose.Schema(
     description: {
       type: String,
       required: false,
+    },
+    image: {
+      type: String,
+      required: false,
     }
   },
   { timestamps: true }

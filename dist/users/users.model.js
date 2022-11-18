@@ -23,6 +23,10 @@ exports.UserSchema = new mongoose.Schema({
     description: {
         type: String,
         required: false,
+    },
+    image: {
+        type: String,
+        required: false,
     }
 }, { timestamps: true });
 //# sourceMappingURL=users.model.js.map
