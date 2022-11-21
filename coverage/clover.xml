@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1668089163540" clover="3.2.0">
-  <project timestamp="1668089163541" name="All files">
-    <metrics statements="358" coveredstatements="192" conditionals="41" coveredconditionals="10" methods="74" coveredmethods="41" elements="473" coveredelements="243" complexity="0" loc="358" ncloc="358" packages="7" files="28" classes="28"/>
+<coverage generated="1669043060784" clover="3.2.0">
+  <project timestamp="1669043060784" name="All files">
+    <metrics statements="368" coveredstatements="193" conditionals="46" coveredconditionals="10" methods="76" coveredmethods="41" elements="490" coveredelements="244" complexity="0" loc="368" ncloc="368" packages="7" files="28" classes="28"/>
     <package name="src">
       <metrics statements="35" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="3"/>
       <file name="app.controller.ts" path="/home/ruben/selldesign/back/src/app.controller.ts">
@@ -374,9 +374,9 @@
       </file>
     </package>
     <package name="src.users">
-      <metrics statements="77" coveredstatements="64" conditionals="12" coveredconditionals="6" methods="16" coveredmethods="14"/>
+      <metrics statements="87" coveredstatements="65" conditionals="17" coveredconditionals="6" methods="18" coveredmethods="14"/>
       <file name="users.controller.ts" path="/home/ruben/selldesign/back/src/users/users.controller.ts">
-        <metrics statements="40" coveredstatements="33" conditionals="4" coveredconditionals="0" methods="9" coveredmethods="7"/>
+        <metrics statements="45" coveredstatements="34" conditionals="5" coveredconditionals="0" methods="10" coveredmethods="7"/>
         <line num="1" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
@@ -417,6 +417,11 @@
         <line num="142" count="1" type="cond" truecount="0" falsecount="1"/>
         <line num="143" count="0" type="stmt"/>
         <line num="145" count="1" type="stmt"/>
+        <line num="156" count="1" type="stmt"/>
+        <line num="161" count="0" type="stmt"/>
+        <line num="162" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="163" count="0" type="stmt"/>
+        <line num="165" count="0" type="stmt"/>
       </file>
       <file name="users.model.ts" path="/home/ruben/selldesign/back/src/users/users.model.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -433,7 +438,7 @@
         <line num="12" count="0" type="stmt"/>
       </file>
       <file name="users.service.ts" path="/home/ruben/selldesign/back/src/users/users.service.ts">
-        <metrics statements="29" coveredstatements="29" conditionals="8" coveredconditionals="6" methods="7" coveredmethods="7"/>
+        <metrics statements="34" coveredstatements="29" conditionals="12" coveredconditionals="6" methods="8" coveredmethods="7"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
         <line num="3" count="3" type="stmt"/>
@@ -463,6 +468,11 @@
         <line num="52" count="2" type="stmt"/>
         <line num="53" count="2" type="stmt"/>
         <line num="54" count="2" type="stmt"/>
+        <line num="58" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
       </file>
     </package>
   </project>

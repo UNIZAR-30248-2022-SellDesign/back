@@ -57,8 +57,6 @@ export class UsersService {
   async setImage(userName: string, image: string): Promise<User>{
     const username = { username: userName?.toLowerCase() };
     const update = { image: image };
-    console.log(username);
-    console.log(userName);
     let user = await this.userModel.findOneAndUpdate(username, update);
     user = await this.userModel.findOne(username);
     return user;

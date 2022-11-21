@@ -78,12 +78,14 @@ describe('ProductsService', () => {
   describe('getHomeProducts', () => {
     it('should return a list with products without filters', async () => {
       productModel.find = jest.fn().mockImplementationOnce(() => ({
-        skip: jest.fn().mockImplementationOnce(() => ({
-          limit: jest.fn().mockImplementationOnce(() => ({
-            populate: jest.fn().mockResolvedValue([product])
+        sort: jest.fn().mockImplementationOnce(() => ({
+          skip: jest.fn().mockImplementationOnce(() => ({
+            limit: jest.fn().mockImplementationOnce(() => ({
+              populate: jest.fn().mockResolvedValue([product])
+            }))
           }))
-        })
-      )}));
+        }))
+      }));
       expect(await service.getHomeProducts(1)).toStrictEqual([product]);
     });
   });
@@ -91,7 +93,9 @@ describe('ProductsService', () => {
   describe('getHomeProductsByPrice', () => {
     it('should return a list with products listed by price', async () => {
       productModel.find = jest.fn().mockImplementation(() => ({
-        populate: jest.fn().mockResolvedValue([product])
+        sort: jest.fn().mockImplementationOnce(() => ({
+          populate: jest.fn().mockResolvedValue([product])
+        }))
       }));
       expect(await service.getHomeProductsByPrice("1","30")).toStrictEqual([product]);
     });
@@ -112,12 +116,14 @@ describe('ProductsService', () => {
   describe('getUserFavProducts', () => {
     it('should return a list with products faved by the user ', async () => {
       favModel.find = jest.fn().mockImplementationOnce(() => ({
-        skip: jest.fn().mockImplementationOnce(() => ({
-          limit: jest.fn().mockImplementationOnce(() => ({
-            populate: jest.fn().mockResolvedValue([product])
+        sort: jest.fn().mockImplementationOnce(() => ({
+          skip: jest.fn().mockImplementationOnce(() => ({
+            limit: jest.fn().mockImplementationOnce(() => ({
+              populate: jest.fn().mockResolvedValue([product])
+            }))
           }))
-        })
-      )}));
+        }))
+      }));
       expect(await service.getUserFavProducts("1", "1")).toStrictEqual([product]);
     });
   });
@@ -125,12 +131,13 @@ describe('ProductsService', () => {
   describe('getUserProducts', () => {
     it('should return a list with products posted by a user ', async () => {
       productModel.find = jest.fn().mockImplementationOnce(() => ({
-        skip: jest.fn().mockImplementationOnce(() => ({
-          limit: jest.fn().mockImplementationOnce(() => ({
-            populate: jest.fn().mockResolvedValue([product])
+        sort: jest.fn().mockImplementationOnce(() => ({
+          skip: jest.fn().mockImplementationOnce(() => ({
+            limit: jest.fn().mockImplementationOnce(() => ({
+              populate: jest.fn().mockResolvedValue([product])
+            }))
           }))
-        })
-        )
+        }))
       }));
       expect(await service.getUserProducts("12345678", "1")).toStrictEqual([product]);
     });
@@ -139,20 +146,24 @@ describe('ProductsService', () => {
   describe('searchProducts', () => {
     it('should return a list with products according to a name', async () => {
       productModel.find = jest.fn().mockImplementationOnce(() => ({
-        skip: jest.fn().mockImplementationOnce(() => ({
-          limit: jest.fn().mockImplementationOnce(() => ({
-            populate: jest.fn().mockResolvedValue([product])
+        sort: jest.fn().mockImplementationOnce(() => ({
+          skip: jest.fn().mockImplementationOnce(() => ({
+            limit: jest.fn().mockImplementationOnce(() => ({
+              populate: jest.fn().mockResolvedValue([product])
+            }))
           }))
-        })
-      )}));
+        }))
+      }));
       expect(await service.searchProducts("testproduct", "1")).toStrictEqual([product]);
     });
   });
 
   describe('searchProductsByPrice', () => {
     it('should return a list with products according to a price and a name', async () => {
-      productModel.find = jest.fn().mockImplementationOnce(() => ({
-            populate: jest.fn().mockResolvedValue([product])
+      productModel.find = jest.fn().mockImplementation(() => ({
+        sort: jest.fn().mockImplementationOnce(() => ({
+          populate: jest.fn().mockResolvedValue([product])
+        }))
       }));
       expect(await service.searchProductsByPrice("testproduct", "1","30")).toStrictEqual([product]);
     });

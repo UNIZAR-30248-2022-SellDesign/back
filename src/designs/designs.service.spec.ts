@@ -73,6 +73,13 @@ describe('DesignsService', () => {
 
   describe('getUserDesigns', () => {
     it('should return every design from a user', async () => {
+      designModel.find = jest.fn().mockImplementation(() => ({
+        sort: jest.fn().mockImplementationOnce(() => ({
+          skip: jest.fn().mockImplementationOnce(() => ({
+            limit: jest.fn().mockResolvedValue([design])
+          }))
+        }))
+      }));
       expect(await service.getUserDesigns("testdesigner", "1")).toStrictEqual([design]);
     });
   });
