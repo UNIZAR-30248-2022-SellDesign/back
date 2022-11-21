@@ -107,9 +107,21 @@ describe('ProductsService', () => {
     });
   });
 
-  describe('getHomeProductsByPrice_Type', () => {
+  describe('getHomeProductsByPrice_Type1', () => {
     it('should return a list with products listed by type and price ', async () => {
       expect(await service.getHomeProductsByPrice_Type("1", "30", "1")).toStrictEqual([product]);
+    });
+  });
+
+  describe('getHomeProductsByPrice_Type2', () => {
+    it('should return a list with products listed by type and price ', async () => {
+      expect(await service.getHomeProductsByPrice_Type("1", "30", "2")).toStrictEqual([product]);
+    });
+  });
+
+  describe('getHomeProductsByPrice_Type3', () => {
+    it('should return a list with products listed by type and price ', async () => {
+      expect(await service.getHomeProductsByPrice_Type("1", "30", "3")).toStrictEqual([product]);
     });
   });
 

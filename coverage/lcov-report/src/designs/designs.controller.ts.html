@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68.75% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/16</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/6</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">64.28% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/14</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -111,22 +111,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -135,17 +126,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -159,36 +159,36 @@ export class DesignsController {
 &nbsp;
     // GET one design
     @Get(':name')
-<span class="fstat-no" title="function not covered" >    async </span>getDesign(@Param() params): Promise&lt;any&gt; {
-<span class="cstat-no" title="statement not covered" >        return await this.designsService.getDesign(params.name)</span>
+    async getDesign(@Param() params): Promise&lt;any&gt; {
+        return await this.designsService.getDesign(params.name)
     }
 &nbsp;
     @Post('/new')
-<span class="fstat-no" title="function not covered" >    async </span>newDesign(
+    async newDesign(
       @Body('name') name: string,
       @Body('image') image: string,
       @Body('id') id: string
     ): Promise&lt;any&gt; {
-<span class="cstat-no" title="statement not covered" >      return await this.designsService.newDesign(id,image,name)</span>
+      return await this.designsService.newDesign(id,image,name)
     }
 &nbsp;
     @Put('/update')
-<span class="fstat-no" title="function not covered" >    async </span>updateDesign(
+    async updateDesign(
       @Body('name') name: string,
       @Body('image') image: string,
       @Body('id') id: string
     ): Promise&lt;any&gt; {
-<span class="cstat-no" title="statement not covered" >      return await this.designsService.updateDesign(id,image,name)</span>
+      return await this.designsService.updateDesign(id,image,name)
     }
 &nbsp;
     @Delete('/delete/:designer/:id')
-<span class="fstat-no" title="function not covered" >    async </span>deleteDesign(@Param() params): Promise&lt;boolean&gt; {
-<span class="cstat-no" title="statement not covered" >      return await this.designsService.deleteDesign(params.id,params.designer)</span>
+    async deleteDesign(@Param() params): Promise&lt;boolean&gt; {
+      return await this.designsService.deleteDesign(params.id,params.designer)
     }
 &nbsp;
     @Get('/:user/:page')
-<span class="fstat-no" title="function not covered" >    async </span>getUserDesigns(@Param() params): Promise&lt;any&gt; {
-<span class="cstat-no" title="statement not covered" >        return await this.designsService.getUserDesigns(params.user, params.page)</span>
+    async getUserDesigns(@Param() params): Promise&lt;any&gt; {
+        return await this.designsService.getUserDesigns(params.user, params.page)
     }
 &nbsp;
 }
@@ -199,7 +199,7 @@ export class DesignsController {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-21T15:04:20.549Z
+                at 2022-11-21T16:42:01.259Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
