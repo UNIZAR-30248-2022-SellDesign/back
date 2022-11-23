@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 exports.DesignSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: false
     },
     designer: {
         type: mongoose.Schema.Types.ObjectId,

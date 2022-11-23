@@ -8,13 +8,14 @@ import {
   Param,
   BadRequestException,
 } from '@nestjs/common';
-import { ApiCreatedResponse, ApiParam, ApiResponse } from '@nestjs/swagger';
+import { ApiCreatedResponse, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import * as bcrypt from 'bcrypt';
 import { AuthenticatedGuard } from '../auth/authenticated.guard';
 import { LocalAuthGuard } from '../auth/local.auth.guard';
 import { UsersService } from './users.service';
 
 @Controller('users')
+@ApiTags("Users API")
 export class UsersController {
 
   constructor(private readonly usersService: UsersService) { }

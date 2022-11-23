@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductsController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const products_service_1 = require("./products.service");
 let ProductsController = class ProductsController {
     constructor(productsService) {
@@ -58,6 +59,14 @@ let ProductsController = class ProductsController {
 };
 __decorate([
     (0, common_1.Get)('/user/:user/:page'),
+    (0, swagger_1.ApiParam)({
+        name: "user-id"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "page"
+    }),
+    (0, swagger_1.ApiOperation)({ description: "Get [user-id] products at specific [page]" }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: "User products returned correctly." }),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -65,6 +74,11 @@ __decorate([
 ], ProductsController.prototype, "getUserDesigns", null);
 __decorate([
     (0, common_1.Get)('/home/page/:page'),
+    (0, swagger_1.ApiParam)({
+        name: "page"
+    }),
+    (0, swagger_1.ApiOperation)({ description: "Get all products at specific [page]" }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: "Home products returned correctly." }),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -72,6 +86,14 @@ __decorate([
 ], ProductsController.prototype, "homeProducts", null);
 __decorate([
     (0, common_1.Get)('/home/:min/:max'),
+    (0, swagger_1.ApiParam)({
+        name: "min"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "max"
+    }),
+    (0, swagger_1.ApiOperation)({ description: "Get all products with price between [min]-[max]" }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: "Home products returned correctly." }),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -79,6 +101,11 @@ __decorate([
 ], ProductsController.prototype, "homeProductsByPrice", null);
 __decorate([
     (0, common_1.Get)('/home/:type'),
+    (0, swagger_1.ApiParam)({
+        name: "type"
+    }),
+    (0, swagger_1.ApiOperation)({ description: "Get all products filtered by [type]" }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: "Home products returned correctly." }),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -86,6 +113,18 @@ __decorate([
 ], ProductsController.prototype, "homeProductsByType", null);
 __decorate([
     (0, common_1.Get)('/home/:min/:max/:type'),
+    (0, swagger_1.ApiParam)({
+        name: "min"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "max"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "type"
+    }),
+    (0, swagger_1.ApiOperation)({ description: "Get all products with price beetwen [min]-[max]" +
+            "and filtered by [type]" }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: "Home products returned correctly." }),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -93,6 +132,14 @@ __decorate([
 ], ProductsController.prototype, "homeProductsByPrice_Type", null);
 __decorate([
     (0, common_1.Get)('/search/:name/:page'),
+    (0, swagger_1.ApiParam)({
+        name: "name"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "page"
+    }),
+    (0, swagger_1.ApiOperation)({ description: "Search products filtered by [name] at specific [page]" }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: "Products returned correctly." }),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -100,6 +147,18 @@ __decorate([
 ], ProductsController.prototype, "buscarProducts", null);
 __decorate([
     (0, common_1.Get)('/search/:name/:min/:max'),
+    (0, swagger_1.ApiParam)({
+        name: "name"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "min"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "max"
+    }),
+    (0, swagger_1.ApiOperation)({ description: "Search products filtered by [name] " +
+            "with price beetwen [min]-[max]" }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: "Products returned correctly." }),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -107,6 +166,11 @@ __decorate([
 ], ProductsController.prototype, "buscarProductsPorPrecio", null);
 __decorate([
     (0, common_1.Get)('/get/:id'),
+    (0, swagger_1.ApiParam)({
+        name: "product-id"
+    }),
+    (0, swagger_1.ApiOperation)({ description: "Return data of product with id [product-id]" }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: "Product returned correctly." }),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -114,6 +178,11 @@ __decorate([
 ], ProductsController.prototype, "getProductByID", null);
 __decorate([
     (0, common_1.Get)('/design/:design'),
+    (0, swagger_1.ApiParam)({
+        name: "design-id"
+    }),
+    (0, swagger_1.ApiOperation)({ description: "Return all products with [design-id]" }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: "Products returned correctly." }),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -121,6 +190,26 @@ __decorate([
 ], ProductsController.prototype, "allProductDesign", null);
 __decorate([
     (0, common_1.Post)('/new'),
+    (0, swagger_1.ApiParam)({
+        name: "price"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "design"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "image"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "type"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "description"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "seller"
+    }),
+    (0, swagger_1.ApiOperation)({ description: "Create a new product with the given [Body]" }),
+    (0, swagger_1.ApiResponse)({ status: 201, description: "Product created correctly." }),
     __param(0, (0, common_1.Body)('price')),
     __param(1, (0, common_1.Body)('design')),
     __param(2, (0, common_1.Body)('image')),
@@ -133,6 +222,26 @@ __decorate([
 ], ProductsController.prototype, "addProduct", null);
 __decorate([
     (0, common_1.Put)('/update'),
+    (0, swagger_1.ApiParam)({
+        name: "price"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "design"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "image"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "type"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "description"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "product-id"
+    }),
+    (0, swagger_1.ApiOperation)({ description: "Update product [product-id] with the given [Body]" }),
+    (0, swagger_1.ApiResponse)({ status: 201, description: "Product updated correctly." }),
     __param(0, (0, common_1.Body)('_id')),
     __param(1, (0, common_1.Body)('price')),
     __param(2, (0, common_1.Body)('design')),
@@ -145,6 +254,14 @@ __decorate([
 ], ProductsController.prototype, "updateProduct", null);
 __decorate([
     (0, common_1.Delete)('/delete/:seller/:id'),
+    (0, swagger_1.ApiParam)({
+        name: "seller"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "product-id"
+    }),
+    (0, swagger_1.ApiOperation)({ description: "Delete product with id [product-id] and uploaded by [seller]" }),
+    (0, swagger_1.ApiResponse)({ status: 201, description: "Product deleted correctly." }),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -152,6 +269,7 @@ __decorate([
 ], ProductsController.prototype, "deleteProduct", null);
 ProductsController = __decorate([
     (0, common_1.Controller)('products'),
+    (0, swagger_1.ApiTags)("Products API"),
     __metadata("design:paramtypes", [products_service_1.ProductsService])
 ], ProductsController);
 exports.ProductsController = ProductsController;

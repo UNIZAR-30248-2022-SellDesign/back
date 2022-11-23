@@ -3,7 +3,8 @@ export const DesignSchema = new mongoose.Schema(
     {
         name: {
             type: String,
-            required: true
+            required: true,
+            unique: false
         },
         designer: {
             type: mongoose.Schema.Types.ObjectId,

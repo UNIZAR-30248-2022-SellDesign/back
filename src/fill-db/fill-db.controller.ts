@@ -1,7 +1,9 @@
 import { Controller, Get } from '@nestjs/common';
+import { ApiExcludeController } from '@nestjs/swagger';
 import { FillDbService } from './fill-db.service';
 
 @Controller('fill-db')
+@ApiExcludeController()
 export class FillDbController {
     constructor(private readonly fillDbService: FillDbService) {}
 

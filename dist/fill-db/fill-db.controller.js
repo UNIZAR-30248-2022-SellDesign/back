@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FillDbController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const fill_db_service_1 = require("./fill-db.service");
 let FillDbController = class FillDbController {
     constructor(fillDbService) {
@@ -29,6 +30,7 @@ __decorate([
 ], FillDbController.prototype, "resetDb", null);
 FillDbController = __decorate([
     (0, common_1.Controller)('fill-db'),
+    (0, swagger_1.ApiExcludeController)(),
     __metadata("design:paramtypes", [fill_db_service_1.FillDbService])
 ], FillDbController);
 exports.FillDbController = FillDbController;

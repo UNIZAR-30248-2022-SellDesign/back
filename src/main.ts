@@ -21,7 +21,6 @@ async function bootstrap() {
     .setTitle('SellDesign API')
     .setDescription('This document contains all the API calls for the SellDesign webSite')
     .setVersion('1.0')
-    .addTag('SellDesign')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
