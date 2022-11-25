@@ -17,12 +17,12 @@ export declare class ProductsService {
     getHomeProductsByPrice(min: any, max: any): Promise<Omit<Product & Required<{
         _id: string;
     }>, never>[]>;
-    getHomeProductsByType(typeID: any): Promise<Omit<Product & Required<{
+    getHomeProductsByType(typeID: number): Promise<Omit<Product & Required<{
         _id: string;
-    }>, never>[]>;
+    }>, never>[] | "No existen productos de este tipo">;
     getHomeProductsByPrice_Type(min: any, max: any, typeID: any): Promise<Omit<Product & Required<{
         _id: string;
-    }>, never>[]>;
+    }>, never>[] | "No existen productos de este tipo">;
     getUserFavProducts(id: any, page: any): Promise<Omit<Fav & Required<{
         _id: string;
     }>, never>[]>;

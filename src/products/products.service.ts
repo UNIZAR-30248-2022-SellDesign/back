@@ -1,11 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { devNull } from 'os';
 import { Fav } from './fav.model';
 import { Product } from './products.model';
 
+enum Type {
+    ".*",
+    "Camiseta",
+    "Pantalon",
+    "Sudadera"
+  }
+
 @Injectable()
 export class ProductsService {
+
 
     constructor(@InjectModel('product') private readonly productModel: Model<Product>,
                 @InjectModel('fav') private readonly favModel: Model<Fav>) {}
@@ -31,36 +40,28 @@ export class ProductsService {
         return products
     }
 
-    async getHomeProductsByType(typeID) {
-        let type = null
-        if(typeID == 1)
-            type = 'Camiseta'
-        else if(typeID == 2)
-            type = 'Pantalon'
-        else if(typeID == 3)
-            type = 'Sudadera'
-        else
-            return null
-
-        let products = await this.productModel.find({"type": type}).sort({"updatedAt": -1}).populate('design')
-        return products
+    async getHomeProductsByType(typeID: number) {
+        if(typeID in Type) {
+            var type: String = Type[typeID]
+            console.log(type)
+            let products = await this.productModel.find({"type": {$regex: type, $options: 'i'}}).sort({"updatedAt": -1}).populate('design')
+            return products
+        } else {
+            return "No existen productos de este tipo"
+        }
     }
 
     async getHomeProductsByPrice_Type(min,max,typeID) {
-        let type = null
-        if(typeID == 1)
-            type = 'Camiseta'
-        else if(typeID == 2)
-            type = 'Pantalon'
-        else if(typeID == 3)
-            type = 'Sudadera'
-        else
-            return null
-
-        let products = await this.productModel.find({"type": type,"price": {$gte: min, $lte: max}})
+        if(typeID in Type) {
+            var type: String = Type[typeID]
+            console.log(type)
+            let products = await this.productModel.find({"type": {$regex: type, $options: 'i'},"price": {$gte: min, $lte: max}})
                                               .sort({"updatedAt": -1})
                                               .populate('design')
-        return products
+            return products
+        } else {
+            return "No existen productos de este tipo"
+        }
     }
 
     async getUserFavProducts(id, page) {
@@ -88,42 +89,36 @@ export class ProductsService {
     }
 
     async newProduct(price,design,image,typeID,description,seller): Promise<any> {
-        let type = null
-        if(typeID == 1)
-            type = 'Camiseta'
-        else if(typeID == 2)
-            type = 'Pantalon'
-        else if(typeID == 3)
-            type = 'Sudadera'
-        else
-            return null
-        const newProduct = new this.productModel({
-            price,
-            design,
-            image,
-            type,
-            description,
-            seller
-        })
-        await newProduct.save()
-        return newProduct
+        if(typeID >= 1 && typeID <= 3) {
+            var type: String = Type[typeID]
+            console.log(type)
+            const newProduct = new this.productModel({
+                price,
+                design,
+                image,
+                type,
+                description,
+                seller
+            })
+            await newProduct.save()
+            return newProduct
+        } else {
+            return "No se puede crear un producto con el tipo proporcionado"
+        }
     }
 
     async updateProduct(_id: string, price: string, design: string, image: string, typeID, description: string): Promise<any> {
-        let type = null
-        if(typeID == 1)
-            type = 'Camiseta'
-        else if(typeID == 2)
-            type = 'Pantalon'
-        else if(typeID == 3)
-            type = 'Sudadera'
-        else
-            return null
-        const filter = {"_id": _id}
-        const update = {price,design,image,type,description}
-        let product = await this.productModel.findOneAndUpdate(filter,update)
-        product = await this.productModel.findOne({_id})
-        return product
+        if(typeID >= 1 && typeID <= 3) {
+            var type: String = Type[typeID]
+            console.log(type)
+            const filter = {"_id": _id}
+            const update = {price,design,image,type,description}
+            let product = await this.productModel.findOneAndUpdate(filter,update)
+            product = await this.productModel.findOne({_id})
+            return product
+        } else {
+            return "No se puede cambiar el producto con el tipo proporcionado"
+        }
     }
 
     async deleteProduct(_id: any, seller: any): Promise<boolean> {

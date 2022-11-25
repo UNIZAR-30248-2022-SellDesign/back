@@ -16,6 +16,13 @@ exports.ProductsService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
+var Type;
+(function (Type) {
+    Type[Type[".*"] = 0] = ".*";
+    Type[Type["Camiseta"] = 1] = "Camiseta";
+    Type[Type["Pantalon"] = 2] = "Pantalon";
+    Type[Type["Sudadera"] = 3] = "Sudadera";
+})(Type || (Type = {}));
 let ProductsService = class ProductsService {
     constructor(productModel, favModel) {
         this.productModel = productModel;
@@ -39,32 +46,28 @@ let ProductsService = class ProductsService {
         return products;
     }
     async getHomeProductsByType(typeID) {
-        let type = null;
-        if (typeID == 1)
-            type = 'Camiseta';
-        else if (typeID == 2)
-            type = 'Pantalon';
-        else if (typeID == 3)
-            type = 'Sudadera';
-        else
-            return null;
-        let products = await this.productModel.find({ "type": type }).sort({ "updatedAt": -1 }).populate('design');
-        return products;
+        if (typeID in Type) {
+            var type = Type[typeID];
+            console.log(type);
+            let products = await this.productModel.find({ "type": { $regex: type, $options: 'i' } }).sort({ "updatedAt": -1 }).populate('design');
+            return products;
+        }
+        else {
+            return "No existen productos de este tipo";
+        }
     }
     async getHomeProductsByPrice_Type(min, max, typeID) {
-        let type = null;
-        if (typeID == 1)
-            type = 'Camiseta';
-        else if (typeID == 2)
-            type = 'Pantalon';
-        else if (typeID == 3)
-            type = 'Sudadera';
-        else
-            return null;
-        let products = await this.productModel.find({ "type": type, "price": { $gte: min, $lte: max } })
-            .sort({ "updatedAt": -1 })
-            .populate('design');
-        return products;
+        if (typeID in Type) {
+            var type = Type[typeID];
+            console.log(type);
+            let products = await this.productModel.find({ "type": { $regex: type, $options: 'i' }, "price": { $gte: min, $lte: max } })
+                .sort({ "updatedAt": -1 })
+                .populate('design');
+            return products;
+        }
+        else {
+            return "No existen productos de este tipo";
+        }
     }
     async getUserFavProducts(id, page) {
         let limit = 8;
@@ -87,41 +90,37 @@ let ProductsService = class ProductsService {
         return products;
     }
     async newProduct(price, design, image, typeID, description, seller) {
-        let type = null;
-        if (typeID == 1)
-            type = 'Camiseta';
-        else if (typeID == 2)
-            type = 'Pantalon';
-        else if (typeID == 3)
-            type = 'Sudadera';
-        else
-            return null;
-        const newProduct = new this.productModel({
-            price,
-            design,
-            image,
-            type,
-            description,
-            seller
-        });
-        await newProduct.save();
-        return newProduct;
+        if (typeID >= 1 && typeID <= 3) {
+            var type = Type[typeID];
+            console.log(type);
+            const newProduct = new this.productModel({
+                price,
+                design,
+                image,
+                type,
+                description,
+                seller
+            });
+            await newProduct.save();
+            return newProduct;
+        }
+        else {
+            return "No se puede crear un producto con el tipo proporcionado";
+        }
     }
     async updateProduct(_id, price, design, image, typeID, description) {
-        let type = null;
-        if (typeID == 1)
-            type = 'Camiseta';
-        else if (typeID == 2)
-            type = 'Pantalon';
-        else if (typeID == 3)
-            type = 'Sudadera';
-        else
-            return null;
-        const filter = { "_id": _id };
-        const update = { price, design, image, type, description };
-        let product = await this.productModel.findOneAndUpdate(filter, update);
-        product = await this.productModel.findOne({ _id });
-        return product;
+        if (typeID >= 1 && typeID <= 3) {
+            var type = Type[typeID];
+            console.log(type);
+            const filter = { "_id": _id };
+            const update = { price, design, image, type, description };
+            let product = await this.productModel.findOneAndUpdate(filter, update);
+            product = await this.productModel.findOne({ _id });
+            return product;
+        }
+        else {
+            return "No se puede cambiar el producto con el tipo proporcionado";
+        }
     }
     async deleteProduct(_id, seller) {
         let result = await this.productModel.deleteOne({ _id, seller });

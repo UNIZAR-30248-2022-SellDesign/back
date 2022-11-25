@@ -11,10 +11,10 @@ export declare class ProductsController {
     }>, never>[]>;
     homeProductsByType(params: any): Promise<Omit<import("./products.model").Product & Required<{
         _id: string;
-    }>, never>[]>;
+    }>, never>[] | "No existen productos de este tipo">;
     homeProductsByPrice_Type(params: any): Promise<Omit<import("./products.model").Product & Required<{
         _id: string;
-    }>, never>[]>;
+    }>, never>[] | "No existen productos de este tipo">;
     buscarProducts(params: any): Promise<Omit<import("./products.model").Product & Required<{
         _id: string;
     }>, never>[]>;
