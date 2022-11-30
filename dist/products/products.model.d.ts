@@ -3,8 +3,8 @@ export declare const ProductSchema: mongoose.Schema<any, mongoose.Model<any, any
     image: string;
     price: number;
     design: mongoose.Types.ObjectId;
-    type?: "Sudadera" | "Camiseta" | "Pantalon";
     description?: string;
+    type?: "Sudadera" | "Camiseta" | "Pantalon";
     seller?: mongoose.Types.ObjectId;
 }>;
 export interface Product extends mongoose.Document {

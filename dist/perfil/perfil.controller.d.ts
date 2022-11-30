@@ -5,7 +5,16 @@ export declare class PerfilController {
     getUserProducts(params: any): Promise<Omit<import("../products/products.model").Product & Required<{
         _id: string;
     }>, never>[]>;
-    getUserFavProducts(params: any): Promise<Omit<import("../products/fav.model").Fav & Required<{
+    getUserFavProducts(params: any): Promise<(import("../products/fav.model").Fav & Required<{
         _id: string;
-    }>, never>[]>;
+    }>)[]>;
+    getIfUserFavProduct(params: any): Promise<(import("../products/fav.model").Fav & Required<{
+        _id: string;
+    }>)[]>;
+    postUserFavProduct(params: any): Promise<(import("../products/fav.model").Fav & Required<{
+        _id: string;
+    }>) | (import("../products/fav.model").Fav & Required<{
+        _id: string;
+    }>)[]>;
+    deleteUserFavProduct(params: any): Promise<boolean>;
 }

@@ -71,8 +71,28 @@ let ProductsService = class ProductsService {
     }
     async getUserFavProducts(id, page) {
         let limit = 8;
-        let fav_products = await this.favModel.find({ "user": id }).sort({ "updatedAt": -1 }).skip(page * limit).limit(limit).populate('product');
+        let fav_products = await this.favModel.find({ "user": id }).limit(limit);
         return fav_products;
+    }
+    async getIfUserFavProduct(id, product) {
+        let fav_product = await this.favModel.find({ "user": id, "product": product }).limit(1);
+        return fav_product;
+    }
+    async postIfUserFavProduct(id, product) {
+        const newFav = new this.favModel({
+            user: id,
+            product: product,
+        });
+        let isFavorite = await this.getIfUserFavProduct(id, product);
+        if (isFavorite.length == 0) {
+            await newFav.save();
+            return newFav;
+        }
+        return isFavorite;
+    }
+    async deleteIfUserFavProduct(id, product) {
+        let result = await this.favModel.deleteOne({ id, product });
+        return result.deletedCount == 1;
     }
     async getUserProducts(id, page) {
         let limit = 8;

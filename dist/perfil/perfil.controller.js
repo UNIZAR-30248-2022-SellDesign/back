@@ -26,6 +26,15 @@ let PerfilController = class PerfilController {
     async getUserFavProducts(params) {
         return await this.productsService.getUserFavProducts(params.id, params.page);
     }
+    async getIfUserFavProduct(params) {
+        return await this.productsService.getIfUserFavProduct(params.id, params.product);
+    }
+    async postUserFavProduct(params) {
+        return await this.productsService.postIfUserFavProduct(params.id, params.product);
+    }
+    async deleteUserFavProduct(params) {
+        return await this.productsService.deleteIfUserFavProduct(params.id, params.product);
+    }
 };
 __decorate([
     (0, common_1.Get)('/:id/products/:page'),
@@ -57,6 +66,51 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], PerfilController.prototype, "getUserFavProducts", null);
+__decorate([
+    (0, common_1.Get)('/fav/:id/:product'),
+    (0, swagger_1.ApiParam)({
+        name: "user-id"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "product-id"
+    }),
+    (0, swagger_1.ApiOperation)({ description: "Get [user-id] fav products at specific [page]" }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: "User fav products returned correctly." }),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PerfilController.prototype, "getIfUserFavProduct", null);
+__decorate([
+    (0, common_1.Post)('/fav/:id/:product'),
+    (0, swagger_1.ApiParam)({
+        name: "user-id"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "product-id"
+    }),
+    (0, swagger_1.ApiOperation)({ description: "Get [user-id] fav products at specific [page]" }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: "User fav products returned correctly." }),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PerfilController.prototype, "postUserFavProduct", null);
+__decorate([
+    (0, common_1.Delete)('/fav/:id/:product'),
+    (0, swagger_1.ApiParam)({
+        name: "user-id"
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "product-id"
+    }),
+    (0, swagger_1.ApiOperation)({ description: "Get [user-id] fav products at specific [page]" }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: "User fav products returned correctly." }),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PerfilController.prototype, "deleteUserFavProduct", null);
 PerfilController = __decorate([
     (0, common_1.Controller)('perfil'),
     (0, swagger_1.ApiTags)("Perfil API"),

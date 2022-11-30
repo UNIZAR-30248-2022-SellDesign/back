@@ -23,9 +23,18 @@ export declare class ProductsService {
     getHomeProductsByPrice_Type(min: any, max: any, typeID: any): Promise<Omit<Product & Required<{
         _id: string;
     }>, never>[] | "No existen productos de este tipo">;
-    getUserFavProducts(id: any, page: any): Promise<Omit<Fav & Required<{
+    getUserFavProducts(id: any, page: any): Promise<(Fav & Required<{
         _id: string;
-    }>, never>[]>;
+    }>)[]>;
+    getIfUserFavProduct(id: any, product: any): Promise<(Fav & Required<{
+        _id: string;
+    }>)[]>;
+    postIfUserFavProduct(id: any, product: any): Promise<(Fav & Required<{
+        _id: string;
+    }>) | (Fav & Required<{
+        _id: string;
+    }>)[]>;
+    deleteIfUserFavProduct(id: any, product: any): Promise<boolean>;
     getUserProducts(id: any, page: any): Promise<Omit<Product & Required<{
         _id: string;
     }>, never>[]>;
