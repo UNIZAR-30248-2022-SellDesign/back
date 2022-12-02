@@ -17,6 +17,7 @@ const designs_module_1 = require("./designs/designs.module");
 const products_module_1 = require("./products/products.module");
 const fill_db_module_1 = require("./fill-db/fill-db.module");
 const perfil_module_1 = require("./perfil/perfil.module");
+const cart_module_1 = require("./cart/cart.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -29,7 +30,8 @@ AppModule = __decorate([
             designs_module_1.DesignsModule,
             products_module_1.ProductsModule,
             fill_db_module_1.FillDbModule,
-            perfil_module_1.PerfilModule
+            perfil_module_1.PerfilModule,
+            cart_module_1.CartModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

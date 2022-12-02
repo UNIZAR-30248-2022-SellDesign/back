@@ -8,6 +8,7 @@ import { DesignsModule } from './designs/designs.module';
 import { ProductsModule } from './products/products.module';
 import { FillDbModule } from './fill-db/fill-db.module';
 import { PerfilModule } from './perfil/perfil.module';
+import { CartModule } from './cart/cart.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { PerfilModule } from './perfil/perfil.module';
       DesignsModule,
       ProductsModule,
       FillDbModule,
-      PerfilModule
+      PerfilModule,
+      CartModule
   ],
   controllers: [AppController],
   providers: [AppService],
