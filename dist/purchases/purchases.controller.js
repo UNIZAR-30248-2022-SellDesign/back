@@ -59,6 +59,7 @@ __decorate([
 ], PurchasesController.prototype, "buyProduct", null);
 PurchasesController = __decorate([
     (0, common_1.Controller)('purchases'),
+    (0, swagger_1.ApiTags)("Purchases API"),
     __metadata("design:paramtypes", [purchases_service_1.PurchasesService])
 ], PurchasesController);
 exports.PurchasesController = PurchasesController;
