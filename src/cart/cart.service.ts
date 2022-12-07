@@ -11,7 +11,7 @@ export class CartService {
 
     async getUserCartProducts(id, page) {
         let limit = 8;
-        let cart_products = await this.cartModel.find({ "user": id }).limit(limit);
+        let cart_products = await this.cartModel.find({ "user": id }).skip(limit * page).limit(limit);
         return cart_products;
     }
 

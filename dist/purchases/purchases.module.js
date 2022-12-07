@@ -6,25 +6,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CartModule = void 0;
+exports.PurchasesModule = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
-const cart_controller_1 = require("./cart.controller");
-const cart_model_1 = require("./cart.model");
-const cart_service_1 = require("./cart.service");
 const products_model_1 = require("../products/products.model");
-const purchases_model_1 = require("../purchases/purchases.model");
-const purchases_service_1 = require("../purchases/purchases.service");
-let CartModule = class CartModule {
+const purchases_controller_1 = require("./purchases.controller");
+const purchases_model_1 = require("./purchases.model");
+const purchases_service_1 = require("./purchases.service");
+let PurchasesModule = class PurchasesModule {
 };
-CartModule = __decorate([
+PurchasesModule = __decorate([
     (0, common_1.Module)({
         imports: [mongoose_1.MongooseModule.forFeature([{ name: "product", schema: products_model_1.ProductSchema }]),
-            mongoose_1.MongooseModule.forFeature([{ name: "cart", schema: cart_model_1.CartSchema }]),
             mongoose_1.MongooseModule.forFeature([{ name: "purchase", schema: purchases_model_1.PurchaseSchema }])],
-        controllers: [cart_controller_1.CartController],
-        providers: [cart_service_1.CartService, purchases_service_1.PurchasesService]
+        controllers: [purchases_controller_1.PurchasesController],
+        providers: [purchases_service_1.PurchasesService]
     })
-], CartModule);
-exports.CartModule = CartModule;
-//# sourceMappingURL=cart.module.js.map
+], PurchasesModule);
+exports.PurchasesModule = PurchasesModule;
+//# sourceMappingURL=purchases.module.js.map

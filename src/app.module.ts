@@ -9,6 +9,7 @@ import { ProductsModule } from './products/products.module';
 import { FillDbModule } from './fill-db/fill-db.module';
 import { PerfilModule } from './perfil/perfil.module';
 import { CartModule } from './cart/cart.module';
+import { PurchasesModule } from './purchases/purchases.module';
 
 @Module({
   imports: [
@@ -22,7 +23,8 @@ import { CartModule } from './cart/cart.module';
       ProductsModule,
       FillDbModule,
       PerfilModule,
-      CartModule
+      CartModule,
+      PurchasesModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,7 +1,9 @@
+import { PurchasesService } from 'src/purchases/purchases.service';
 import { CartService } from './cart.service';
 export declare class CartController {
     private readonly cartsService;
-    constructor(cartsService: CartService);
+    private readonly purchasesService;
+    constructor(cartsService: CartService, purchasesService: PurchasesService);
     getUserCartProducts(params: any): Promise<(import("./cart.model").Cart & Required<{
         _id: string;
     }>)[]>;
@@ -10,4 +12,7 @@ export declare class CartController {
     }>>;
     removeProductFromCart(params: any): Promise<boolean>;
     clearCart(params: any): Promise<boolean>;
+    purchaseCartContent(params: any): Promise<(import("./cart.model").Cart & Required<{
+        _id: string;
+    }>)[]>;
 }

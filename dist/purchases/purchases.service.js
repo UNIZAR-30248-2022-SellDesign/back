@@ -12,43 +12,35 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CartService = void 0;
+exports.PurchasesService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-let CartService = class CartService {
-    constructor(productModel, cartModel) {
+let PurchasesService = class PurchasesService {
+    constructor(productModel, purchaseModel) {
         this.productModel = productModel;
-        this.cartModel = cartModel;
+        this.purchaseModel = purchaseModel;
     }
-    async getUserCartProducts(id, page) {
+    async getUserPurchaseHistory(id, page) {
         let limit = 8;
-        let cart_products = await this.cartModel.find({ "user": id }).skip(limit * page).limit(limit);
-        return cart_products;
+        let history = await this.purchaseModel.find({ "user": id }).skip(limit * page).limit(limit);
+        return history;
     }
-    async addProductToCart(userId, productId) {
-        const newCartProduct = new this.cartModel({
+    async buyProduct(userId, productId) {
+        const newPurchase = new this.purchaseModel({
             user: userId,
             product: productId,
         });
-        await newCartProduct.save();
-        return newCartProduct;
-    }
-    async removeProductFromCart(userId, productId) {
-        let result = await this.cartModel.deleteOne({ userId, productId });
-        return result.deletedCount == 1;
-    }
-    async clearCart(userId) {
-        let result = await this.cartModel.deleteMany({ userId });
-        return result.deletedCount >= 1;
+        await newPurchase.save();
+        return newPurchase;
     }
 };
-CartService = __decorate([
+PurchasesService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)('product')),
-    __param(1, (0, mongoose_1.InjectModel)('cart')),
+    __param(1, (0, mongoose_1.InjectModel)('purchase')),
     __metadata("design:paramtypes", [mongoose_2.Model,
         mongoose_2.Model])
-], CartService);
-exports.CartService = CartService;
-//# sourceMappingURL=cart.service.js.map
+], PurchasesService);
+exports.PurchasesService = PurchasesService;
+//# sourceMappingURL=purchases.service.js.map
