@@ -15,7 +15,7 @@ export class PurchasesService {
             return history;
         }
 
-        async buyProduct(userId, productId) {
+        async buyProduct(userId, productId): Promise<any> {
             const newPurchase = new this.purchaseModel({
                 user:userId,
                 product:productId,

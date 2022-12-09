@@ -5,7 +5,5 @@ export declare class PurchasesController {
     getUserPurchaseHistory(params: any): Promise<(import("./purchases.model").Purchase & Required<{
         _id: string;
     }>)[]>;
-    buyProduct(params: any): Promise<import("./purchases.model").Purchase & Required<{
-        _id: string;
-    }>>;
+    buyProduct(params: any): Promise<any>;
 }

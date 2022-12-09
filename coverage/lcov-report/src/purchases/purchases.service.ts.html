@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/14</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/12</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -97,22 +97,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Injectable } from '@nestjs/common';
@@ -126,19 +126,19 @@ export class PurchasesService {
     constructor(@InjectModel('product') private readonly productModel: Model&lt;Product&gt;,
         @InjectModel('purchase') private readonly purchaseModel: Model&lt;Purchase&gt;) { }
 &nbsp;
-<span class="fstat-no" title="function not covered" >        async </span>getUserPurchaseHistory(id, page) {
-            let limit = <span class="cstat-no" title="statement not covered" >8;</span>
-            let history = <span class="cstat-no" title="statement not covered" >await this.purchaseModel.find({ "user": id }).skip(limit * page).limit(limit);</span>
-<span class="cstat-no" title="statement not covered" >            return history;</span>
+        async getUserPurchaseHistory(id, page) {
+            let limit = 8;
+            let history = await this.purchaseModel.find({ "user": id }).skip(limit * page).limit(limit);
+            return history;
         }
 &nbsp;
-<span class="fstat-no" title="function not covered" >        async </span>buyProduct(userId, productId) {
-            const newPurchase = <span class="cstat-no" title="statement not covered" >new this.purchaseModel({</span>
+        async buyProduct(userId, productId): Promise&lt;any&gt; {
+            const newPurchase = new this.purchaseModel({
                 user:userId,
                 product:productId,
             });
-<span class="cstat-no" title="statement not covered" >            await newPurchase.save();</span>
-<span class="cstat-no" title="statement not covered" >            return newPurchase;</span>
+            await newPurchase.save();
+            return newPurchase;
         }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -148,7 +148,7 @@ export class PurchasesService {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-12-09T22:00:09.140Z
+                at 2022-12-09T23:42:18.543Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

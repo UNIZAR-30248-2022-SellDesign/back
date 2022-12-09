@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">44.44% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/18</span>
+                <span class='fraction'>18/18</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">37.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/16</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -107,32 +107,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Injectable } from '@nestjs/common';
@@ -146,29 +146,29 @@ export class CartService {
     constructor(@InjectModel('product') private readonly productModel: Model&lt;Product&gt;,
         @InjectModel('cart') private readonly cartModel: Model&lt;Cart&gt;) { }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    async </span>getUserCartProducts(id, page) {
-        let limit = <span class="cstat-no" title="statement not covered" >8;</span>
-        let cart_products = <span class="cstat-no" title="statement not covered" >await this.cartModel.find({ "user": id }).skip(limit * page).limit(limit);</span>
-<span class="cstat-no" title="statement not covered" >        return cart_products;</span>
+    async getUserCartProducts(id, page) {
+        let limit = 8;
+        let cart_products = await this.cartModel.find({ "user": id }).skip(limit * page).limit(limit);
+        return cart_products;
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    async </span>addProductToCart(userId, productId) {
-        const newCartProduct = <span class="cstat-no" title="statement not covered" >new this.cartModel({</span>
+    async addProductToCart(userId, productId): Promise&lt;any&gt; {
+        const newCartProduct = new this.cartModel({
             user:userId,
             product:productId,
         });
-<span class="cstat-no" title="statement not covered" >        await newCartProduct.save();</span>
-<span class="cstat-no" title="statement not covered" >        return newCartProduct;</span>
+        await newCartProduct.save();
+        return newCartProduct;
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    async </span>removeProductFromCart(userId,productId) {
-        let result = <span class="cstat-no" title="statement not covered" >await this.cartModel.deleteOne({userId,productId})</span>
-<span class="cstat-no" title="statement not covered" >        return result.deletedCount == 1</span>
+    async removeProductFromCart(userId,productId) {
+        let result = await this.cartModel.deleteOne({userId,productId})
+        return result.deletedCount == 1
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    async </span>clearCart(userId) {
-        let result = <span class="cstat-no" title="statement not covered" >await this.cartModel.deleteMany({userId})</span>
-<span class="cstat-no" title="statement not covered" >        return result.deletedCount &gt;= 1</span>
+    async clearCart(userId) {
+        let result = await this.cartModel.deleteMany({userId})
+        return result.deletedCount &gt;= 1
     }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -178,7 +178,7 @@ export class CartService {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-12-09T22:00:09.140Z
+                at 2022-12-09T23:42:18.543Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

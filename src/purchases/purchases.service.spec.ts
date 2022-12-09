@@ -2,8 +2,20 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { PurchasesService } from './purchases.service';
 import { getModelToken } from '@nestjs/mongoose';
 
-class purchaseModel {
+const purchase = {
+  _id: '12345678',
+  user: 'testuser',
+  product: 'testproduct'
+}
 
+class purchaseModel {
+  constructor (private data) {}
+  save = jest.fn().mockResolvedValue(this.data);
+  static findOne = jest.fn().mockResolvedValue(purchase);
+  static find = jest.fn().mockResolvedValue([purchase]);
+  static findOneAndUpdate = jest.fn().mockResolvedValue(purchase);
+  static deleteOne = jest.fn().mockResolvedValue({"n": 1, "ok": 1, "deletedCount": 1});
+  static deleteMany = jest.fn().mockResolvedValue({"n": 1, "ok": 1, "deletedCount": 1});
 }
 
 class productModel {
@@ -33,5 +45,23 @@ describe('PurchasesService', () => {
 
   it('should be defined', () => {
     expect(service).toBeDefined();
+  });
+
+  describe('get users purchase history', () => {
+    it('should return all products in a users history', async () => {
+      purchaseModel.find = jest.fn().mockImplementationOnce(() => ({
+        skip: jest.fn().mockImplementationOnce(() => ({
+          limit: jest.fn().mockResolvedValueOnce([purchase])
+        }))
+      }));
+      expect(await service.getUserPurchaseHistory("testdesigner", "1")).toStrictEqual([purchase]);
+    });
+  });
+
+  describe('add product to users history', () => {
+    it('should return added product', async () => {
+      let res = await service.buyProduct("testuser", "testproduct");
+      expect(res.data.product).toBe(purchase.product);
+    });
   });
 });

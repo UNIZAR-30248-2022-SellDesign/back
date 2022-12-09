@@ -8,9 +8,7 @@ export declare class CartService {
     getUserCartProducts(id: any, page: any): Promise<(Cart & Required<{
         _id: string;
     }>)[]>;
-    addProductToCart(userId: any, productId: any): Promise<Cart & Required<{
-        _id: string;
-    }>>;
+    addProductToCart(userId: any, productId: any): Promise<any>;
     removeProductFromCart(userId: any, productId: any): Promise<boolean>;
     clearCart(userId: any): Promise<boolean>;
 }

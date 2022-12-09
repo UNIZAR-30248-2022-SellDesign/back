@@ -8,7 +8,6 @@ export class PurchasesController {
 
     constructor(private readonly purchasesService: PurchasesService) {}
 
-    // Busqueda de productos sin filtros
     @Get('/:user/:page')
     @ApiParam({
         name: "user"

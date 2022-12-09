@@ -7,9 +7,7 @@ export declare class CartController {
     getUserCartProducts(params: any): Promise<(import("./cart.model").Cart & Required<{
         _id: string;
     }>)[]>;
-    addProductToCart(params: any): Promise<import("./cart.model").Cart & Required<{
-        _id: string;
-    }>>;
+    addProductToCart(params: any): Promise<any>;
     removeProductFromCart(params: any): Promise<boolean>;
     clearCart(params: any): Promise<boolean>;
     purchaseCartContent(params: any): Promise<(import("./cart.model").Cart & Required<{

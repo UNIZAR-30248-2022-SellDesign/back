@@ -15,7 +15,7 @@ export class CartService {
         return cart_products;
     }
 
-    async addProductToCart(userId, productId) {
+    async addProductToCart(userId, productId): Promise<any> {
         const newCartProduct = new this.cartModel({
             user:userId,
             product:productId,

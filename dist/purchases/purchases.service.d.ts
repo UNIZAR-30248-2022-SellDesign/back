@@ -8,7 +8,5 @@ export declare class PurchasesService {
     getUserPurchaseHistory(id: any, page: any): Promise<(Purchase & Required<{
         _id: string;
     }>)[]>;
-    buyProduct(userId: any, productId: any): Promise<Purchase & Required<{
-        _id: string;
-    }>>;
+    buyProduct(userId: any, productId: any): Promise<any>;
 }
