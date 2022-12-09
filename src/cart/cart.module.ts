@@ -4,8 +4,8 @@ import { CartController } from './cart.controller';
 import { CartSchema } from './cart.model';
 import { CartService } from './cart.service';
 import { ProductSchema } from '../products/products.model';
-import { PurchaseSchema } from 'src/purchases/purchases.model';
-import { PurchasesService } from 'src/purchases/purchases.service';
+import { PurchaseSchema } from '../purchases/purchases.model';
+import { PurchasesService } from '../purchases/purchases.service';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: "product", schema: ProductSchema }]),

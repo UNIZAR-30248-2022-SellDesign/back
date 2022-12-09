@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { PurchasesService } from 'src/purchases/purchases.service';
+import { PurchasesService } from '../purchases/purchases.service';
 import { CartService } from './cart.service';
 
 @Controller('cart')

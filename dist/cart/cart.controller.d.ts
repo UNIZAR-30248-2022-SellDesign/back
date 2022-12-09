@@ -1,4 +1,4 @@
-import { PurchasesService } from 'src/purchases/purchases.service';
+import { PurchasesService } from '../purchases/purchases.service';
 import { CartService } from './cart.service';
 export declare class CartController {
     private readonly cartsService;

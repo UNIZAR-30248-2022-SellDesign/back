@@ -103,7 +103,7 @@ describe('ProductsService', () => {
 
   describe('getHomeProductsByType', () => {
     it('should return a list with products listed by type ', async () => {
-      expect(await service.getHomeProductsByType("1")).toStrictEqual([product]);
+      expect(await service.getHomeProductsByType(1)).toStrictEqual([product]);
     });
   });
 
@@ -128,13 +128,7 @@ describe('ProductsService', () => {
   describe('getUserFavProducts', () => {
     it('should return a list with products faved by the user ', async () => {
       favModel.find = jest.fn().mockImplementationOnce(() => ({
-        sort: jest.fn().mockImplementationOnce(() => ({
-          skip: jest.fn().mockImplementationOnce(() => ({
-            limit: jest.fn().mockImplementationOnce(() => ({
-              populate: jest.fn().mockResolvedValue([product])
-            }))
-          }))
-        }))
+              limit: jest.fn().mockResolvedValue([product])
       }));
       expect(await service.getUserFavProducts("1", "1")).toStrictEqual([product]);
     });
