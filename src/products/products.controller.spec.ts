@@ -32,6 +32,10 @@ class favModel {
   static findOneAndUpdate = jest.fn().mockResolvedValue(product);
 }
 
+class designModel {
+  
+}
+
 describe('ProductsController', () => {
   let controller: ProductsController;
 
@@ -47,6 +51,10 @@ describe('ProductsController', () => {
         {
           provide: getModelToken('fav'),
           useValue: favModel
+        },
+        {
+          provide: getModelToken('design'),
+          useValue: designModel
         }
       ],
     }).compile();

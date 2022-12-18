@@ -1,5 +1,7 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
+import { DesignSchema } from '../designs/designs.model';
+import { DesignsService } from '../designs/designs.service';
 import { FavSchema } from '../products/fav.model';
 import { ProductSchema } from '../products/products.model';
 import { ProductsService } from '../products/products.service';
@@ -13,6 +15,7 @@ describe('PerfilController', () => {
       controllers: [PerfilController],
       providers: [
         ProductsService,
+        DesignsService,
         {
           provide: getModelToken('product'),
           useValue: ProductSchema
@@ -20,6 +23,10 @@ describe('PerfilController', () => {
         {
           provide: getModelToken('fav'),
           useValue: FavSchema
+        },
+        {
+          provide: getModelToken('design'),
+          useValue: DesignSchema
         }
       ],
     }).compile();

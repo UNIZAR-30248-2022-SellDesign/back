@@ -1,12 +1,12 @@
 import { Model } from 'mongoose';
-import { DesignsService } from 'src/designs/designs.service';
+import { Design } from 'src/designs/designs.model';
 import { Fav } from './fav.model';
 import { Product } from './products.model';
 export declare class ProductsService {
     private readonly productModel;
     private readonly favModel;
-    private readonly designsService;
-    constructor(productModel: Model<Product>, favModel: Model<Fav>, designsService: DesignsService);
+    private readonly designModel;
+    constructor(productModel: Model<Product>, favModel: Model<Fav>, designModel: Model<Design>);
     getProductByID(id: any): Promise<Product & Required<{
         _id: string;
     }>>;

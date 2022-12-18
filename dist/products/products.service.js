@@ -16,7 +16,6 @@ exports.ProductsService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const designs_service_1 = require("../designs/designs.service");
 var Type;
 (function (Type) {
     Type[Type[".*"] = 0] = ".*";
@@ -25,10 +24,10 @@ var Type;
     Type[Type["Sudadera"] = 3] = "Sudadera";
 })(Type || (Type = {}));
 let ProductsService = class ProductsService {
-    constructor(productModel, favModel, designsService) {
+    constructor(productModel, favModel, designModel) {
         this.productModel = productModel;
         this.favModel = favModel;
-        this.designsService = designsService;
+        this.designModel = designModel;
     }
     async getProductByID(id) {
         let product = await this.productModel.findOne({ "_id": id }).populate('design');
@@ -115,7 +114,7 @@ let ProductsService = class ProductsService {
         if (typeID >= 1 && typeID <= 3) {
             var type = Type[typeID];
             var search_name = "";
-            let search_design = await this.designsService.getDesignByID(design);
+            let search_design = await this.designModel.findOne({ design });
             if (search_design) {
                 search_name = type + " " + search_design.name;
             }
@@ -142,7 +141,7 @@ let ProductsService = class ProductsService {
         if (typeID >= 1 && typeID <= 3) {
             var type = Type[typeID];
             var search_name = "";
-            let search_design = await this.designsService.getDesignByID(design);
+            let search_design = await this.designModel.findOne({ design });
             if (search_design) {
                 search_name = type + " " + search_design.name;
             }
@@ -174,9 +173,10 @@ ProductsService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)('product')),
     __param(1, (0, mongoose_1.InjectModel)('fav')),
+    __param(2, (0, mongoose_1.InjectModel)('design')),
     __metadata("design:paramtypes", [mongoose_2.Model,
         mongoose_2.Model,
-        designs_service_1.DesignsService])
+        mongoose_2.Model])
 ], ProductsService);
 exports.ProductsService = ProductsService;
 //# sourceMappingURL=products.service.js.map

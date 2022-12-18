@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { DesignsService } from 'src/designs/designs.service';
+import { Design } from 'src/designs/designs.model';
 import { Fav } from './fav.model';
 import { Product } from './products.model';
 
@@ -17,7 +17,7 @@ export class ProductsService {
 
     constructor(@InjectModel('product') private readonly productModel: Model<Product>,
                 @InjectModel('fav') private readonly favModel: Model<Fav>,
-                private readonly designsService: DesignsService) {}
+                @InjectModel('design') private readonly designModel: Model<Design>) {}
 
     async getProductByID(id) {
         let product = await this.productModel.findOne({"_id": id}).populate('design')
@@ -43,7 +43,6 @@ export class ProductsService {
     async getHomeProductsByType(typeID: number) {
         if(typeID in Type) {
             var type: String = Type[typeID]
-            console.log(type)
             let products = await this.productModel.find({"type": {$regex: type, $options: 'i'}}).sort({"updatedAt": -1}).populate('design')
             return products
         } else {
@@ -54,7 +53,6 @@ export class ProductsService {
     async getHomeProductsByPrice_Type(min,max,typeID) {
         if(typeID in Type) {
             var type: String = Type[typeID]
-            console.log(type)
             let products = await this.productModel.find({"type": {$regex: type, $options: 'i'},"price": {$gte: min, $lte: max}})
                                               .sort({"updatedAt": -1})
                                               .populate('design')
@@ -113,7 +111,7 @@ export class ProductsService {
         if(typeID >= 1 && typeID <= 3) {
             var type: String = Type[typeID]
             var search_name: String = ""
-            let search_design = await this.designsService.getDesignByID(design)
+            let search_design = await this.designModel.findOne({ design })
             if(search_design) {
                 search_name = type + " " + search_design.name
             } else {
@@ -140,7 +138,7 @@ export class ProductsService {
             var type: String = Type[typeID]
             
             var search_name: String = ""
-            let search_design = await this.designsService.getDesignByID(design)
+            let search_design = await this.designModel.findOne({ design })
             if(search_design) {
                 search_name = type + " " + search_design.name
             } else {

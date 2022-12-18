@@ -16,6 +16,13 @@ const product = {
   seller: 'testseller'
 }
 
+const design = {
+  _id: '12345678',
+  name: 'testname',
+  designer: 'testdesigner',
+  image: 'testimage',
+}
+
 class productModel {
   constructor (private data) {}
   save = jest.fn().mockResolvedValue(this.data);
@@ -37,6 +44,21 @@ class favModel {
   }));
   static find = jest.fn().mockResolvedValue([product]);
   static findOneAndUpdate = jest.fn().mockResolvedValue(product);
+  static deleteMany = jest.fn().mockResolvedValue({"n": 1, "ok": 1});
+}
+
+class designModel {
+  constructor (private data) {}
+  save = jest.fn().mockResolvedValue(this.data);
+  static findOne = jest.fn().mockImplementation(() => ({
+    populate: jest.fn().mockResolvedValue(design)
+  }));
+  static find = jest.fn().mockImplementation(() => ({
+    populate: jest.fn().mockResolvedValue([design])
+  }));
+  static findOneAndUpdate = jest.fn().mockResolvedValue(design);
+  static deleteOne = jest.fn().mockResolvedValue({"n": 1, "ok": 1, "deletedCount": 1});
+
 }
 
 describe('ProductsService', () => {
@@ -52,6 +74,10 @@ describe('ProductsService', () => {
         {
           provide: getModelToken('fav'),
           useValue: favModel
+        },
+        {
+          provide: getModelToken('design'),
+          useValue: designModel
         }
       ],
     }).compile();
