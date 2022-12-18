@@ -10,6 +10,7 @@ exports.FillDbModule = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const designs_model_1 = require("../designs/designs.model");
+const fav_model_1 = require("../products/fav.model");
 const products_model_1 = require("../products/products.model");
 const users_model_1 = require("../users/users.model");
 const fill_db_controller_1 = require("./fill-db.controller");
@@ -20,7 +21,8 @@ FillDbModule = __decorate([
     (0, common_1.Module)({
         imports: [mongoose_1.MongooseModule.forFeature([{ name: "product", schema: products_model_1.ProductSchema }]),
             mongoose_1.MongooseModule.forFeature([{ name: "design", schema: designs_model_1.DesignSchema }]),
-            mongoose_1.MongooseModule.forFeature([{ name: "user", schema: users_model_1.UserSchema }])],
+            mongoose_1.MongooseModule.forFeature([{ name: "user", schema: users_model_1.UserSchema }]),
+            mongoose_1.MongooseModule.forFeature([{ name: "fav", schema: fav_model_1.FavSchema }])],
         controllers: [fill_db_controller_1.FillDbController],
         providers: [fill_db_service_1.FillDbService]
     })

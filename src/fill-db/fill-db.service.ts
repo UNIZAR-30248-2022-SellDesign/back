@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Design } from 'src/designs/designs.model';
+import { Fav } from 'src/products/fav.model';
 import { User } from 'src/users/users.model';
 import { Product } from '../products/products.model';
 
@@ -11,10 +12,13 @@ export class FillDbService {
 
     constructor(@InjectModel('product') private readonly productModel: Model<Product>,
                 @InjectModel('design') private readonly designModel: Model<Design>,
-                @InjectModel('user') private readonly userModel: Model<User>) {}
+                @InjectModel('user') private readonly userModel: Model<User>,
+                @InjectModel('fav') private readonly favModel: Model<Fav>) {}
 
 
     async resetDb() {
+        // Borrar favs
+        await this.favModel.deleteMany()
         // Borrar productos
         await this.productModel.deleteMany()
         // Borrar diseños

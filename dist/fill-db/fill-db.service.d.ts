@@ -1,12 +1,14 @@
 import { Model } from 'mongoose';
 import { Design } from 'src/designs/designs.model';
+import { Fav } from 'src/products/fav.model';
 import { User } from 'src/users/users.model';
 import { Product } from '../products/products.model';
 export declare class FillDbService {
     private readonly productModel;
     private readonly designModel;
     private readonly userModel;
-    constructor(productModel: Model<Product>, designModel: Model<Design>, userModel: Model<User>);
+    private readonly favModel;
+    constructor(productModel: Model<Product>, designModel: Model<Design>, userModel: Model<User>, favModel: Model<Fav>);
     resetDb(): Promise<void>;
     overloadDb(): Promise<void>;
 }

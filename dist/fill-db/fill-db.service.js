@@ -17,12 +17,14 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 let FillDbService = class FillDbService {
-    constructor(productModel, designModel, userModel) {
+    constructor(productModel, designModel, userModel, favModel) {
         this.productModel = productModel;
         this.designModel = designModel;
         this.userModel = userModel;
+        this.favModel = favModel;
     }
     async resetDb() {
+        await this.favModel.deleteMany();
         await this.productModel.deleteMany();
         await this.designModel.deleteMany();
         await this.userModel.deleteMany({ "password": "$2b$10$2jX44YDU7MBeVXpxaZ8eP.iCLXa2USKZ0tDrIuDgkfOGd7a.ZDqJG" });
@@ -38,7 +40,9 @@ FillDbService = __decorate([
     __param(0, (0, mongoose_1.InjectModel)('product')),
     __param(1, (0, mongoose_1.InjectModel)('design')),
     __param(2, (0, mongoose_1.InjectModel)('user')),
+    __param(3, (0, mongoose_1.InjectModel)('fav')),
     __metadata("design:paramtypes", [mongoose_2.Model,
+        mongoose_2.Model,
         mongoose_2.Model,
         mongoose_2.Model])
 ], FillDbService);

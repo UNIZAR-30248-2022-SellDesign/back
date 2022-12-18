@@ -161,7 +161,13 @@ let ProductsService = class ProductsService {
     }
     async deleteProduct(_id, seller) {
         let result = await this.productModel.deleteOne({ _id, seller });
-        return result.deletedCount == 1;
+        if (result.deletedCount == 1) {
+            await this.favModel.deleteMany({ "product": _id });
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 };
 ProductsService = __decorate([

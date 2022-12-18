@@ -159,7 +159,12 @@ export class ProductsService {
 
     async deleteProduct(_id: any, seller: any): Promise<boolean> {
         let result = await this.productModel.deleteOne({_id,seller})
-        return result.deletedCount == 1
+        if(result.deletedCount == 1) {
+            await this.favModel.deleteMany({"product":_id})
+            return true
+        } else {
+            return false
+        }
     }
 
 }
