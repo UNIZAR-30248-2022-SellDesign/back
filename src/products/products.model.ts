@@ -1,6 +1,10 @@
 import * as mongoose from "mongoose"
 export const ProductSchema = new mongoose.Schema(
     {
+        search_name: {
+            type: String,
+            required: true
+        },
         price: {
             type: Number,
             required: true
@@ -32,6 +36,7 @@ export const ProductSchema = new mongoose.Schema(
 
 export interface Product extends mongoose.Document {
     _id: string;
+    search_name: string;
     price: string;
     design: mongoose.Schema.Types.ObjectId;
     image: string;

@@ -27,10 +27,10 @@ export class FillDbService {
         await this.designModel.insertMany(designs_list)
         // Añadir productos
         await this.productModel.insertMany(products_list)
+    }
 
+    async overloadDb() {
 
-       
-       
     }
 }
 
@@ -115,6 +115,7 @@ const designs_list = [
 
 const products_list = [
     {
+        "search_name": "Pantalon Hello World",
         "price": "18",
         "design": "6361583a43ea637879536702",
         "image": "https://lp2.hm.com/hmgoepprod?set=format%5Bwebp%5D%2Cquality%5B79%5D%2Csource%5B%2F8e%2F1a%2F8e1afc93481dd9c6545ef252ddf09bd42b56b794.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url%5Bfile%3A%2Fproduct%2Fmain%5D",
@@ -123,6 +124,7 @@ const products_list = [
         "seller": "507f1f77bcf86cd799439011"
     },
     {
+        "search_name": "Sudadera Hello World",
         "price": "33",
         "design": "6361583a43ea637879536702",
         "image": "https://www.articulopublicitario.com/wp-content/uploads/2022/02/SU1087_31_2_1.jpg",
@@ -131,6 +133,7 @@ const products_list = [
         "seller": "507f1f77bcf86cd799439011"
     },
     {
+        "search_name": "Pantalon The Sun",
         "price": "20",
         "design": "6361583a43ea637879536701",
         "image": "https://www.universo-mini.com/server/Portal_0012272/img/products/pansmart-negro-chh_6376236_xxl.jpg",
@@ -139,6 +142,7 @@ const products_list = [
         "seller": "507f1f77bcf86cd799439011"
     },
     {
+        "search_name": "Sudadera The Sun",
         "price": "32",
         "design": "6361583a43ea637879536701",
         "image": "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F95%2F62%2F9562ea351b202e8d12ae36070abca865aba2ba0f.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_hoodiessweatshirts%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
@@ -147,6 +151,7 @@ const products_list = [
         "seller": "507f1f77bcf86cd799439011"
     },
     {
+        "search_name": "Sudadera Arrows",
         "price": "25",
         "design": "6361583a43ea637879536700",
         "image": "https://img01.ztat.net/article/spp-media-p1/eb8c0ef53fb5410f9ad24f4c23ca0d82/e4e1312fbe81499e906b722183015598.jpg?imwidth=1800&filter=packshot",
@@ -155,6 +160,7 @@ const products_list = [
         "seller": "507f1f77bcf86cd799439012"
     },
     {
+        "search_name": "Sudadera Arrows",
         "price": "40",
         "design": "6361583a43ea637879536700",
         "image": "https://img01.ztat.net/article/spp-media-p1/da13d409f917426a878ebee15d1e697c/0ea87b0d53cc4aada7cfd29b636bc76c.jpg?imwidth=1800&filter=packshot",
@@ -163,6 +169,7 @@ const products_list = [
         "seller": "507f1f77bcf86cd799439012"
     },
     {
+        "search_name": "Sudadera Mostache",
         "price": "35",
         "design": "6361583a43ea6378795366ff",
         "image": "https://static.cropp.com/media/catalog/product/cache/1200/a4e40ebdc3e371adff845072e1c73f37/2/3/2375K-99X-050-1-466175_13.jpg",
@@ -171,6 +178,7 @@ const products_list = [
         "seller": "507f1f77bcf86cd799439012"
     },
     {
+        "search_name": "Camiseta Mostache",
         "price": "17",
         "design": "6361583a43ea6378795366ff",
         "image": "https://img.freepik.com/vector-premium/diseno-maqueta-camiseta-negra-blanco_92086-468.jpg",
@@ -179,6 +187,7 @@ const products_list = [
         "seller": "507f1f77bcf86cd799439012"
     },
     {
+        "search_name": "Camiseta Android",
         "price": "20",
         "design": "6361583a43ea6378795366fe",
         "image": "https://koaladoompur.com/97-large_default/camiseta-basica-personalizada.jpg",
@@ -187,6 +196,7 @@ const products_list = [
         "seller": "507f1f77bcf86cd799439013"
     },
     {
+        "search_name": "Camiseta Android",
         "price": "25",
         "design": "6361583a43ea6378795366fe",
         "image": "https://st3.depositphotos.com/1226172/19368/i/450/depositphotos_193689568-stock-photo-navy-blue-plain-shortsleeve-cotton.jpg",
@@ -195,6 +205,7 @@ const products_list = [
         "seller": "507f1f77bcf86cd799439013"
     },
     {
+        "search_name": "Camiseta Feather & birds",
         "price": "22",
         "design": "6361583a43ea6378795366fd",
         "image": "https://camisetaspersonalizadas.tienda/wp-content/uploads/2017/06/Bg_VerdeK.jpg",
@@ -203,6 +214,7 @@ const products_list = [
         "seller": "507f1f77bcf86cd799439013"
     },
     {
+        "search_name": "Camiseta Feather & birds",
         "price": "15",
         "design": "6361583a43ea6378795366fd",
         "image": "https://camisetastheorigen.com/5462-large_default/camiseta-personalizada-hombre-color-amarillo.jpg",
@@ -211,6 +223,7 @@ const products_list = [
         "seller": "507f1f77bcf86cd799439013"
     },
     {
+        "search_name": "Camiseta A cat",
         "price": "12",
         "design": "6361583a43ea6378795366fc",
         "image": "https://www.childrensalonoutlet.com/media/catalog/product/cache/0/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/m/a/mayoral-boys-red-cotton-t-shirt-371887-5afbd836f80139d0fee6d1e4f9438d4a7d3c95fc.jpg",
@@ -219,6 +232,7 @@ const products_list = [
         "seller": "507f1f77bcf86cd799439014"
     },
     {
+        "search_name": "Pantalon A cat",
         "price": "15",
         "design": "6361583a43ea6378795366fc",
         "image": "https://contents.mediadecathlon.com/p1604441/k$b1cbc8c6ec1a075a4a20da601c7d6563/sq/250x250/Pantalon-corto-de-futbol-adulto-F100-blanco.jpg",
@@ -227,6 +241,7 @@ const products_list = [
         "seller": "507f1f77bcf86cd799439014"
     },
     {
+        "search_name": "Camiseta Coffee Is Always Good Idea",
         "price": "15",
         "design": "6361583a43ea6378795366fb",
         "image": "https://www.camisetasserigrafia.es/wp-content/uploads/2014/05/pantalon-deporte-azul.jpg",
@@ -235,6 +250,7 @@ const products_list = [
         "seller": "507f1f77bcf86cd799439014"
     },
     {
+        "search_name": "Pantalon Coffee Is Always Good Idea",
         "price": "15",
         "design": "6361583a43ea6378795366fb",
         "image": "https://uniformescolegioelbercial.com/1282-large_default_2x/reserva-pantalon-corto-deporte-de-punto-marino.jpg",

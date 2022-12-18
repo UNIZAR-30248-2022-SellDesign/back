@@ -3,8 +3,8 @@ export declare const UserSchema: mongoose.Schema<any, mongoose.Model<any, any, a
     username: string;
     password: string;
     email: string;
-    description?: string;
     realname?: string;
+    description?: string;
     image?: string;
 }>;
 export interface User extends mongoose.Document {

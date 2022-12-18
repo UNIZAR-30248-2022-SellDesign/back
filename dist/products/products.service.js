@@ -16,6 +16,7 @@ exports.ProductsService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
+const designs_service_1 = require("../designs/designs.service");
 var Type;
 (function (Type) {
     Type[Type[".*"] = 0] = ".*";
@@ -24,9 +25,10 @@ var Type;
     Type[Type["Sudadera"] = 3] = "Sudadera";
 })(Type || (Type = {}));
 let ProductsService = class ProductsService {
-    constructor(productModel, favModel) {
+    constructor(productModel, favModel, designsService) {
         this.productModel = productModel;
         this.favModel = favModel;
+        this.designsService = designsService;
     }
     async getProductByID(id) {
         let product = await this.productModel.findOne({ "_id": id }).populate('design');
@@ -99,21 +101,29 @@ let ProductsService = class ProductsService {
         let products = await this.productModel.find({ "seller": id }).sort({ "updatedAt": -1 }).skip(page * limit).limit(limit).populate('design');
         return products;
     }
-    async searchProducts(name, page) {
+    async searchProducts(search_name, page) {
         let limit = 8;
-        let products = await this.productModel.find({ "type": { $regex: name, $options: 'i' } }).sort({ "updatedAt": -1 }).skip(page * limit).limit(limit).populate('design');
+        let products = await this.productModel.find({ "search_name": { $regex: search_name, $options: 'i' } }).sort({ "updatedAt": -1 }).skip(page * limit).limit(limit).populate('design');
         return products;
     }
-    async searchProductsByPrice(name, min, max) {
-        let products = await this.productModel.find({ "type": { $regex: name, $options: 'i' },
+    async searchProductsByPrice(search_name, min, max) {
+        let products = await this.productModel.find({ "search_name": { $regex: search_name, $options: 'i' },
             "price": { $gte: min, $lte: max } }).sort({ "updatedAt": -1 }).populate('design');
         return products;
     }
     async newProduct(price, design, image, typeID, description, seller) {
         if (typeID >= 1 && typeID <= 3) {
             var type = Type[typeID];
-            console.log(type);
+            var search_name = "";
+            let search_design = await this.designsService.getDesignByID(design);
+            if (search_design) {
+                search_name = type + " " + search_design.name;
+            }
+            else {
+                return "El diseño no existe en la base de datos";
+            }
             const newProduct = new this.productModel({
+                search_name,
                 price,
                 design,
                 image,
@@ -131,9 +141,16 @@ let ProductsService = class ProductsService {
     async updateProduct(_id, price, design, image, typeID, description) {
         if (typeID >= 1 && typeID <= 3) {
             var type = Type[typeID];
-            console.log(type);
+            var search_name = "";
+            let search_design = await this.designsService.getDesignByID(design);
+            if (search_design) {
+                search_name = type + " " + search_design.name;
+            }
+            else {
+                return "El diseño no existe en la base de datos";
+            }
             const filter = { "_id": _id };
-            const update = { price, design, image, type, description };
+            const update = { search_name, price, design, image, type, description };
             let product = await this.productModel.findOneAndUpdate(filter, update);
             product = await this.productModel.findOne({ _id });
             return product;
@@ -152,7 +169,8 @@ ProductsService = __decorate([
     __param(0, (0, mongoose_1.InjectModel)('product')),
     __param(1, (0, mongoose_1.InjectModel)('fav')),
     __metadata("design:paramtypes", [mongoose_2.Model,
-        mongoose_2.Model])
+        mongoose_2.Model,
+        designs_service_1.DesignsService])
 ], ProductsService);
 exports.ProductsService = ProductsService;
 //# sourceMappingURL=products.service.js.map

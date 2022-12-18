@@ -1,10 +1,12 @@
 import { Model } from 'mongoose';
+import { DesignsService } from 'src/designs/designs.service';
 import { Fav } from './fav.model';
 import { Product } from './products.model';
 export declare class ProductsService {
     private readonly productModel;
     private readonly favModel;
-    constructor(productModel: Model<Product>, favModel: Model<Fav>);
+    private readonly designsService;
+    constructor(productModel: Model<Product>, favModel: Model<Fav>, designsService: DesignsService);
     getProductByID(id: any): Promise<Product & Required<{
         _id: string;
     }>>;
@@ -38,10 +40,10 @@ export declare class ProductsService {
     getUserProducts(id: any, page: any): Promise<Omit<Product & Required<{
         _id: string;
     }>, never>[]>;
-    searchProducts(name: any, page: any): Promise<Omit<Product & Required<{
+    searchProducts(search_name: any, page: any): Promise<Omit<Product & Required<{
         _id: string;
     }>, never>[]>;
-    searchProductsByPrice(name: any, min: any, max: any): Promise<Omit<Product & Required<{
+    searchProductsByPrice(search_name: any, min: any, max: any): Promise<Omit<Product & Required<{
         _id: string;
     }>, never>[]>;
     newProduct(price: any, design: any, image: any, typeID: any, description: any, seller: any): Promise<any>;

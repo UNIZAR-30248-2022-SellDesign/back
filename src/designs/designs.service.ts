@@ -13,6 +13,11 @@ export class DesignsService {
         return design
     }
 
+    async getDesignByID(_id: any): Promise<Design> {
+      const design = await this.designModel.findOne({ _id})
+      return design
+  }
+
     async newDesign(designer: string, image: string, name: string): Promise<any> {
       const newDesign = new this.designModel({
         name,

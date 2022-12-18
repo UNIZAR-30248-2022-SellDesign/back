@@ -24,6 +24,10 @@ let DesignsService = class DesignsService {
         const design = await this.designModel.findOne({ name: req });
         return design;
     }
+    async getDesignByID(_id) {
+        const design = await this.designModel.findOne({ _id });
+        return design;
+    }
     async newDesign(designer, image, name) {
         const newDesign = new this.designModel({
             name,

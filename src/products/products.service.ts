@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { randomInt } from 'crypto';
 import { Model } from 'mongoose';
-import { devNull } from 'os';
+import { DesignsService } from 'src/designs/designs.service';
 import { Fav } from './fav.model';
 import { Product } from './products.model';
 
@@ -16,9 +15,9 @@ enum Type {
 @Injectable()
 export class ProductsService {
 
-
     constructor(@InjectModel('product') private readonly productModel: Model<Product>,
-                @InjectModel('fav') private readonly favModel: Model<Fav>) {}
+                @InjectModel('fav') private readonly favModel: Model<Fav>,
+                private readonly designsService: DesignsService) {}
 
     async getProductByID(id) {
         let product = await this.productModel.findOne({"_id": id}).populate('design')
@@ -98,14 +97,14 @@ export class ProductsService {
         return products
     }
 
-    async searchProducts(name,page) {
+    async searchProducts(search_name,page) {
         let limit = 8
-        let products = await this.productModel.find({"type": {$regex: name, $options: 'i'}}).sort({"updatedAt": -1}).skip(page*limit).limit(limit).populate('design')
+        let products = await this.productModel.find({"search_name": {$regex: search_name, $options: 'i'}}).sort({"updatedAt": -1}).skip(page*limit).limit(limit).populate('design')
         return products
     }
 
-    async searchProductsByPrice(name,min,max) {
-        let products = await this.productModel.find({"type": {$regex: name, $options: 'i'},
+    async searchProductsByPrice(search_name,min,max) {
+        let products = await this.productModel.find({"search_name": {$regex: search_name, $options: 'i'},
                                                      "price": {$gte: min, $lte: max}}).sort({"updatedAt": -1}).populate('design')
         return products
     }
@@ -113,8 +112,15 @@ export class ProductsService {
     async newProduct(price,design,image,typeID,description,seller): Promise<any> {
         if(typeID >= 1 && typeID <= 3) {
             var type: String = Type[typeID]
-            console.log(type)
+            var search_name: String = ""
+            let search_design = await this.designsService.getDesignByID(design)
+            if(search_design) {
+                search_name = type + " " + search_design.name
+            } else {
+                return "El diseño no existe en la base de datos"
+            }
             const newProduct = new this.productModel({
+                search_name,
                 price,
                 design,
                 image,
@@ -132,9 +138,17 @@ export class ProductsService {
     async updateProduct(_id: string, price: string, design: string, image: string, typeID, description: string): Promise<any> {
         if(typeID >= 1 && typeID <= 3) {
             var type: String = Type[typeID]
-            console.log(type)
+            
+            var search_name: String = ""
+            let search_design = await this.designsService.getDesignByID(design)
+            if(search_design) {
+                search_name = type + " " + search_design.name
+            } else {
+                return "El diseño no existe en la base de datos"
+            }
+
             const filter = {"_id": _id}
-            const update = {price,design,image,type,description}
+            const update = {search_name,price,design,image,type,description}
             let product = await this.productModel.findOneAndUpdate(filter,update)
             product = await this.productModel.findOne({_id})
             return product
@@ -149,4 +163,3 @@ export class ProductsService {
     }
 
 }
-

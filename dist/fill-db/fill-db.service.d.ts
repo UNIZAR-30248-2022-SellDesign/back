@@ -8,4 +8,5 @@ export declare class FillDbService {
     private readonly userModel;
     constructor(productModel: Model<Product>, designModel: Model<Design>, userModel: Model<User>);
     resetDb(): Promise<void>;
+    overloadDb(): Promise<void>;
 }
