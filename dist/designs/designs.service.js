@@ -57,16 +57,16 @@ let DesignsService = class DesignsService {
         var e_1, _a;
         let products_with_design = await this.productModel.find({ "design": id });
         try {
-            for (var products_with_design_1 = __asyncValues(products_with_design), products_with_design_1_1; products_with_design_1_1 = await products_with_design_1.next(), !products_with_design_1_1.done;) {
-                const product = products_with_design_1_1.value;
-                await this.favModel.deleteMany({ "product": product._id });
-                await this.productModel.deleteOne({ "_id": product._id, "seller": product.seller });
+            for (var _b = __asyncValues(Object.keys(products_with_design)), _c; _c = await _b.next(), !_c.done;) {
+                const product = _c.value;
+                await this.favModel.deleteMany({ "product": products_with_design[product]._id });
+                await this.productModel.deleteOne({ "_id": products_with_design[product]._id, "seller": products_with_design[product].seller });
             }
         }
         catch (e_1_1) { e_1 = { error: e_1_1 }; }
         finally {
             try {
-                if (products_with_design_1_1 && !products_with_design_1_1.done && (_a = products_with_design_1.return)) await _a.call(products_with_design_1);
+                if (_c && !_c.done && (_a = _b.return)) await _a.call(_b);
             }
             finally { if (e_1) throw e_1.error; }
         }

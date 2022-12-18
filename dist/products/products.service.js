@@ -49,7 +49,6 @@ let ProductsService = class ProductsService {
     async getHomeProductsByType(typeID) {
         if (typeID in Type) {
             var type = Type[typeID];
-            console.log(type);
             let products = await this.productModel.find({ "type": { $regex: type, $options: 'i' } }).sort({ "updatedAt": -1 }).populate('design');
             return products;
         }
@@ -60,7 +59,6 @@ let ProductsService = class ProductsService {
     async getHomeProductsByPrice_Type(min, max, typeID) {
         if (typeID in Type) {
             var type = Type[typeID];
-            console.log(type);
             let products = await this.productModel.find({ "type": { $regex: type, $options: 'i' }, "price": { $gte: min, $lte: max } })
                 .sort({ "updatedAt": -1 })
                 .populate('design');

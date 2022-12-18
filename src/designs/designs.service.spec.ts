@@ -33,6 +33,7 @@ class designModel {
   static limit = jest.fn(() => designModel);
   static findOneAndUpdate = jest.fn().mockResolvedValue(design);
   static deleteOne = jest.fn().mockResolvedValue({"n": 1, "ok": 1, "deletedCount": 1});
+  static deleteMany = jest.fn().mockResolvedValue({"n": 1, "ok": 1, "deletedCount": 1});
 }
 
 class productModel {
@@ -42,10 +43,12 @@ class productModel {
       limit: jest.fn().mockResolvedValue([product])
     })
   )}));
+  static deleteOne = jest.fn().mockResolvedValue({"n": 1, "ok": 1, "deletedCount": 1});
+  static deleteMany = jest.fn().mockResolvedValue({"n": 1, "ok": 1, "deletedCount": 1});
 }
 
 class favModel {
-
+  static deleteMany = jest.fn().mockResolvedValue({"n": 1, "ok": 1, "deletedCount": 1});
 }
 
 describe('DesignsService', () => {

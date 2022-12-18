@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Fav } from 'src/products/fav.model';
-import { Product } from 'src/products/products.model';
+import { Product, ProductSchema } from 'src/products/products.model';
 import { Design } from './designs.model';
 
 @Injectable()
@@ -42,9 +42,9 @@ export class DesignsService {
 
     async deleteDesign(id: any, designer: any): Promise<boolean> {
       let products_with_design = await this.productModel.find({"design": id})
-      for await (const product of products_with_design) {
-        await this.favModel.deleteMany({"product": product._id})
-        await this.productModel.deleteOne({"_id": product._id,"seller": product.seller})
+      for await (const product of Object.keys(products_with_design)) {
+        await this.favModel.deleteMany({"product": products_with_design[product]._id})
+        await this.productModel.deleteOne({"_id": products_with_design[product]._id,"seller": products_with_design[product].seller})
       }
 
       let result = await this.designModel.deleteOne({"_id": id, "designer": designer})
