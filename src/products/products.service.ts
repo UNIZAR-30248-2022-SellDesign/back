@@ -111,7 +111,7 @@ export class ProductsService {
         if(typeID >= 1 && typeID <= 3) {
             var type: String = Type[typeID]
             var search_name: String = ""
-            let search_design = await this.designModel.findOne({ design })
+            let search_design = await this.designModel.findOne({ "_id": design })
             if(search_design) {
                 search_name = type + " " + search_design.name
             } else {
@@ -138,7 +138,7 @@ export class ProductsService {
             var type: String = Type[typeID]
             
             var search_name: String = ""
-            let search_design = await this.designModel.findOne({ design })
+            let search_design = await this.designModel.findOne({ "_id": design })
             if(search_design) {
                 search_name = type + " " + search_design.name
             } else {

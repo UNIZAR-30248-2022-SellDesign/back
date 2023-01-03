@@ -112,7 +112,7 @@ let ProductsService = class ProductsService {
         if (typeID >= 1 && typeID <= 3) {
             var type = Type[typeID];
             var search_name = "";
-            let search_design = await this.designModel.findOne({ design });
+            let search_design = await this.designModel.findOne({ "_id": design });
             if (search_design) {
                 search_name = type + " " + search_design.name;
             }
@@ -139,7 +139,7 @@ let ProductsService = class ProductsService {
         if (typeID >= 1 && typeID <= 3) {
             var type = Type[typeID];
             var search_name = "";
-            let search_design = await this.designModel.findOne({ design });
+            let search_design = await this.designModel.findOne({ "_id": design });
             if (search_design) {
                 search_name = type + " " + search_design.name;
             }
