@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { ApiExcludeController } from '@nestjs/swagger';
 import { FillDbService } from './fill-db.service';
 
@@ -16,10 +16,13 @@ export class FillDbController {
 
     // Elimina y crea un nuevo set de usuarios/productos/diseños
     @Get('/reset')
-    async resetDb(): Promise<String> {
-        await this.fillDbService.resetDb()
-        return "Base de datos reseteada!"
+    async resetDb(): Promise<Object> {
+        return await this.fillDbService.resetDb()
     }
 
-
+    // Sobrecarga la base de datos con [iter] veces los productos del set en el servicio
+    @Get('/overload/:iter')
+    async overloadDb(@Param() params): Promise<Object> {
+        return await this.fillDbService.overloadDb(params.iter)
+    }
 }

@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FillDbController = void 0;
 const common_1 = require("@nestjs/common");
@@ -18,8 +21,10 @@ let FillDbController = class FillDbController {
         this.fillDbService = fillDbService;
     }
     async resetDb() {
-        await this.fillDbService.resetDb();
-        return "Base de datos reseteada!";
+        return await this.fillDbService.resetDb();
+    }
+    async overloadDb(params) {
+        return await this.fillDbService.overloadDb(params.iter);
     }
 };
 __decorate([
@@ -28,6 +33,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], FillDbController.prototype, "resetDb", null);
+__decorate([
+    (0, common_1.Get)('/overload/:iter'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], FillDbController.prototype, "overloadDb", null);
 FillDbController = __decorate([
     (0, common_1.Controller)('fill-db'),
     (0, swagger_1.ApiExcludeController)(),

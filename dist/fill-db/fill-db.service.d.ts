@@ -9,6 +9,14 @@ export declare class FillDbService {
     private readonly userModel;
     private readonly favModel;
     constructor(productModel: Model<Product>, designModel: Model<Design>, userModel: Model<User>, favModel: Model<Fav>);
-    resetDb(): Promise<void>;
-    overloadDb(): Promise<void>;
+    resetDb(): Promise<{
+        msg: string;
+        total_users: number;
+        total_designs: number;
+        total_products: number;
+    }>;
+    overloadDb(iter: any): Promise<{
+        msg: string;
+        total_new_products: number;
+    }>;
 }

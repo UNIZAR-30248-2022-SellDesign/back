@@ -10,7 +10,7 @@ enum Type {
     "Camiseta",
     "Pantalon",
     "Sudadera"
-  }
+}
 
 @Injectable()
 export class ProductsService {

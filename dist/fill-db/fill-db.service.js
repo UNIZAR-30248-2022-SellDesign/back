@@ -27,12 +27,27 @@ let FillDbService = class FillDbService {
         await this.favModel.deleteMany();
         await this.productModel.deleteMany();
         await this.designModel.deleteMany();
-        await this.userModel.deleteMany({ "password": "$2b$10$2jX44YDU7MBeVXpxaZ8eP.iCLXa2USKZ0tDrIuDgkfOGd7a.ZDqJG" });
-        await this.userModel.insertMany(users_list);
-        await this.designModel.insertMany(designs_list);
-        await this.productModel.insertMany(products_list);
+        await this.userModel.deleteMany({ "password": "123456A" });
+        let users = await this.userModel.insertMany(users_list);
+        let designs = await this.designModel.insertMany(designs_list);
+        let products = await this.productModel.insertMany(products_list);
+        return {
+            msg: "Reset Database",
+            total_users: users.length,
+            total_designs: designs.length,
+            total_products: products.length
+        };
     }
-    async overloadDb() {
+    async overloadDb(iter) {
+        let total = 0;
+        for (let i = 0; i < iter; i++) {
+            let products = await this.productModel.insertMany(products_list);
+            total += products.length;
+        }
+        return {
+            msg: "Overload Database Products",
+            total_new_products: total
+        };
     }
 };
 FillDbService = __decorate([
@@ -51,26 +66,34 @@ const users_list = [
     {
         "_id": '507f1f77bcf86cd799439011',
         "username": "ibon",
-        "password": "$2b$10$2jX44YDU7MBeVXpxaZ8eP.iCLXa2USKZ0tDrIuDgkfOGd7a.ZDqJG",
-        "email": "776561@unizar.es"
+        "password": "123456A",
+        "email": "776561@unizar.es",
+        "realname": "ibon",
+        "description": "I like trains"
     },
     {
         "_id": '507f1f77bcf86cd799439012',
         "username": "raul",
-        "password": "$2b$10$2jX44YDU7MBeVXpxaZ8eP.iCLXa2USKZ0tDrIuDgkfOGd7a.ZDqJG",
-        "email": "795333@unizar.es"
+        "password": "123456A",
+        "email": "795333@unizar.es",
+        "realname": "raul",
+        "description": "I like trains"
     },
     {
         "_id": '507f1f77bcf86cd799439013',
         "username": "gelpa",
-        "password": "$2b$10$2jX44YDU7MBeVXpxaZ8eP.iCLXa2USKZ0tDrIuDgkfOGd7a.ZDqJG",
-        "email": "759406@unizar.es"
+        "password": "123456A",
+        "email": "759406@unizar.es",
+        "realname": "gelpa",
+        "description": "I like trains"
     },
     {
         "_id": '507f1f77bcf86cd799439014',
         "username": "ru",
-        "password": "$2b$10$2jX44YDU7MBeVXpxaZ8eP.iCLXa2USKZ0tDrIuDgkfOGd7a.ZDqJG",
-        "email": "736650@unizar.es"
+        "password": "123456A",
+        "email": "736650@unizar.es",
+        "realname": "ru",
+        "description": "I like trains"
     }
 ];
 const designs_list = [

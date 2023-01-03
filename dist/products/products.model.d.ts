@@ -1,10 +1,10 @@
 import * as mongoose from "mongoose";
 export declare const ProductSchema: mongoose.Schema<any, mongoose.Model<any, any, any, any, any>, {}, {}, {}, {}, "type", {
     design: mongoose.Types.ObjectId;
-    image: string;
     search_name: string;
     price: number;
-    type?: "Sudadera" | "Camiseta" | "Pantalon";
+    image: string;
+    type?: "Pantalon" | "Sudadera" | "Camiseta";
     description?: string;
     seller?: mongoose.Types.ObjectId;
 }>;
